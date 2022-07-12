@@ -2,6 +2,8 @@
 
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:tip_pay/screens/input_biller.dart';
 import 'package:tip_pay/widgets/circleImage.dart';
 
 class PayMain extends StatefulWidget {
@@ -65,7 +67,7 @@ class PayMain_ extends State<PayMain> {
                 ],
               ),
               // const SizedBox(width: 100),
-              const SizedBox(width: 60),
+              const Spacer(),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const [
@@ -97,10 +99,11 @@ class PayMain_ extends State<PayMain> {
 
           //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Material(
                 child: Ink(
-                    padding: const EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(15),
                     width: width * .420,
                     height: height * .180,
                     decoration: BoxDecoration(
@@ -112,7 +115,7 @@ class PayMain_ extends State<PayMain> {
                         children: [
                           const Icon(
                             Icons.qr_code_scanner,
-                            size: 70,
+                            size: 56,
                             color: Colors.white,
                           ),
                           const Text(
@@ -126,22 +129,23 @@ class PayMain_ extends State<PayMain> {
                       ),
                     )),
               ),
-              const SizedBox(width: 20),
               Material(
                 child: Ink(
-                  padding: const EdgeInsets.all(5),
+                  padding: const EdgeInsets.all(15),
                   width: width * .420,
                   height: height * .180,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       color: Colors.grey.shade900),
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(InputBiller());
+                    },
                     child: Row(
                       children: [
                         const Icon(
                           Icons.receipt_long_outlined,
-                          size: 70,
+                          size: 56,
                           color: Colors.white,
                         ),
                         const SizedBox(

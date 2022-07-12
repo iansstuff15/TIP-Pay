@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:tip_pay/screens/home.dart';
+import 'package:tip_pay/screens/input_biller.dart';
 import 'package:tip_pay/screens/login.dart';
 import 'package:tip_pay/screens/pay_main.dart';
 import 'package:tip_pay/screens/receive_main.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         PayMain.id: (context) => PayMain(),
         Receive.id: (context) => Receive(),
         Settings.id: (context) => Settings(),
+        InputBiller.id: (context) => InputBiller(),
       },
     );
   }
