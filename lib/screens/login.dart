@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tip_pay/widgets/button_text.dart';
 import 'package:tip_pay/widgets/input.dart';
+import 'package:tip_pay/screens/bottom_nav.dart';
 
 import 'home.dart';
 
@@ -34,7 +35,7 @@ class Login extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-             ButtonText('Login', ()=>Get.to(Home()))
+             ButtonText('Login', ()=>Get.to(BottomNav()))
             ],
           ),
         

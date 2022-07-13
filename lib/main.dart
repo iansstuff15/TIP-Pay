@@ -7,6 +7,8 @@ import 'package:tip_pay/screens/pay_main.dart';
 import 'package:tip_pay/screens/receive_main.dart';
 import 'package:tip_pay/screens/settings.dart';
 import 'package:tip_pay/screens/linkGmail.dart';
+import 'package:tip_pay/screens/bottom_nav.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       theme: ThemeData(fontFamily: 'SF UI Text'),
-      home: Material(child: LinkGmail()),
+      home: Login(),
       routes: {
         Login.id: (context) => Login(),
         Home.id: (context) => Home(),
