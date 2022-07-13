@@ -75,9 +75,8 @@ generateCsv() async{
   String csvData = ListToCsvConverter().convert(itemList);
   final dir = await getExternalStorageDirectory();
   //Directory generalDownloadDir = Directory('storage/emulated.0/Download');
-  final File file = await (File('${dir?.path}/transac.csv').create());
+  final File file = await (File('${dir?.path}/transac.txt').create());
   await file.writeAsString(csvData);
-  await file.delete();
   print("Stored in $dir");
 }
 
