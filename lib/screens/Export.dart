@@ -29,7 +29,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState(){
     super.initState();
-    itemList = [<String>["ID", "name"]];
+    itemList = [<String>["ID", "name"]]; // will change to match actual data categories
   }
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class _MyAppState extends State<MyApp> {
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (context,index){
                         DocumentSnapshot doc = snapshot.data!.docs[index];
-                        itemList.add(<String>[doc.get('ID'), doc.get("name")]);
+                        itemList.add(<String>[doc.get('ID'), doc.get("name")]); // will change to match actual data categories
                         print(itemList.toString());
                         return Column();
                       }
