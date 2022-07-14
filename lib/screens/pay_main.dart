@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tip_pay/screens/input_biller.dart';
+import 'package:tip_pay/screens/scanner_qr.dart';
 import 'package:tip_pay/widgets/circleImage.dart';
 
 class PayMain extends StatefulWidget {
@@ -110,7 +111,9 @@ class PayMain_ extends State<PayMain> {
                         borderRadius: BorderRadius.circular(8),
                         color: Colors.grey.shade900),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(ScannerQR());
+                      },
                       child: Row(
                         children: [
                           const Icon(

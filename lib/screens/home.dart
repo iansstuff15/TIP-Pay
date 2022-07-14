@@ -6,6 +6,7 @@ import 'package:tip_pay/widgets/card.dart';
 import 'package:tip_pay/widgets/circleImage.dart';
 import 'package:tip_pay/screens/pay_main.dart';
 import 'package:tip_pay/screens/receive_main.dart';
+import 'package:tip_pay/screens/topup_screen.dart';
 
 class Home extends StatelessWidget {
   static String id = 'home';
@@ -171,7 +172,7 @@ class Home extends StatelessWidget {
                             borderRadius: BorderRadius.circular(8),
                             color: Colors.grey.shade900),
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {Get.to(TopupScreen());},
                           child: Column(
                             children: [
                               const Icon(

@@ -8,6 +8,7 @@ import 'package:tip_pay/screens/receive_main.dart';
 import 'package:tip_pay/screens/settings.dart';
 import 'package:tip_pay/screens/linkGmail.dart';
 import 'package:tip_pay/screens/bottom_nav.dart';
+import 'package:tip_pay/screens/topup_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         Settings.id: (context) => Settings(),
         InputBiller.id: (context) => InputBiller(),
         LinkGmail.id: (context) => const LinkGmail(),
+        TopupScreen.id: (context) => TopupScreen(),
       },
     );
   }
