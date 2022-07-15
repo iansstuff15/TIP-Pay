@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "1025984387707",
+    "project_id": "tip-pay-2a425",
+    "storage_bucket": "tip-pay-2a425.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1025984387707:android:ab16f44dc168106f9c20de",
+        "android_client_info": {
+          "package_name": "com.example.tip_pay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1025984387707-7uhtsg9qvv1hsvhk14svpe4e93h83s3g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAM4M7rOSJfFgSLXOhOqML2_y_pLNMcY4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1025984387707-7uhtsg9qvv1hsvhk14svpe4e93h83s3g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1025984387707-g7t3a3tbm6qreu8q0f089rl3f0pcitbu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.tipPay"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1025984387707:android:67968860a48eb3cf9c20de",
+        "android_client_info": {
+          "package_name": "com.example.untitled"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1025984387707-7uhtsg9qvv1hsvhk14svpe4e93h83s3g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAM4M7rOSJfFgSLXOhOqML2_y_pLNMcY4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1025984387707-7uhtsg9qvv1hsvhk14svpe4e93h83s3g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1025984387707-g7t3a3tbm6qreu8q0f089rl3f0pcitbu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.tipPay"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

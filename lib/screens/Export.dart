@@ -3,7 +3,7 @@ import 'package:csv/csv.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:path_provider/path_provider.dart';
-import 'firebase_options.dart';
+import 'package:tip_pay/firebase_options.dart';
 import 'dart:io';
 
 
