@@ -25,11 +25,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Stream<QuerySnapshot> streamQuery = FirebaseFirestore.instance.collection('Users').snapshots();
+  Stream<QuerySnapshot> streamQuery = FirebaseFirestore.instance.collection('Transac').snapshots();
   @override
   void initState(){
     super.initState();
-    itemList = [<String>["ID", "name"]]; // will change to match actual data categories
+    itemList = [<String>["Biller_id", "Biller_name", "Item_name", "Price", "Student_id", "Trans_date"]];
   }
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,8 @@ class _MyAppState extends State<MyApp> {
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (context,index){
                         DocumentSnapshot doc = snapshot.data!.docs[index];
-                        itemList.add(<String>[doc.get('ID'), doc.get("name")]); // will change to match actual data categories
+                        itemList.add(<String>[doc.get("Biller_id").toString(), doc.get("Biller_name"), doc.get("Item_name"),
+                          doc.get("Price").toString(), doc.get("Student_id").toString(), doc.get("Trans_date").toDate().toString()]);
                         print(itemList.toString());
                         return Column();
                       }
