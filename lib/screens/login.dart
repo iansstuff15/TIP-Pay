@@ -5,10 +5,13 @@ import 'package:get/get.dart';
 import 'package:tip_pay/widgets/button_text.dart';
 import 'package:tip_pay/widgets/input.dart';
 import 'package:tip_pay/screens/bottom_nav.dart';
-
+import 'package:tip_pay/screens/signup.dart';
 import 'home.dart';
 
 class Login extends StatelessWidget {
+  final studentid= TextEditingController();
+  final email = TextEditingController();
+  final password = TextEditingController();
   static String id = 'Login';
   @override
   Widget build(BuildContext context) {
@@ -26,16 +29,18 @@ class Login extends StatelessWidget {
             fontSize: 40,
           ),),
           SizedBox(height: 20,),
-          Input('Student No.',TextInputType.number,false),
+          Input('Student No.',TextInputType.number,false, studentid),
           SizedBox(height: 10,),
-          Input('Email',TextInputType.emailAddress,false),
+          Input('Email',TextInputType.emailAddress,false, email),
           SizedBox(height: 10,),
-          Input('Password',TextInputType.text,true),
+          Input('Password',TextInputType.text,true, password),
           SizedBox(height: 10,),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-             ButtonText('Login', ()=>Get.to(BottomNav()))
+             ButtonText('Login', ()=>Get.to(BottomNav())),
+              SizedBox(width: 10,),
+              ButtonText("Sign Up", ()=> Get.to(Signup()))
             ],
           ),
         
