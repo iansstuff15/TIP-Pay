@@ -8,7 +8,9 @@ class Input extends StatelessWidget {
   String? label;
   TextInputType? keyboard;
   bool? obsureText;
-  Input(this.label, this.keyboard,this.obsureText);
+  TextEditingController controller;
+  Input(this.label, this.keyboard,this.obsureText, this.controller);
+
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class Input extends StatelessWidget {
       child: TextField(
         keyboardType: keyboard,
         obscureText: obsureText!,
-        
+        controller: controller,
         decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.0),
