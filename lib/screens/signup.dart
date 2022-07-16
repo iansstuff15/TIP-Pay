@@ -31,6 +31,7 @@ class Signup extends StatelessWidget {
       "Password": password.text,
       "Total_spending":0,
       "Total_deposits":0,
+      "balance":0,
       "redeem_promo":0
     };
     await docacc.set(json);
