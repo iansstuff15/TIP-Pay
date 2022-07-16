@@ -15,6 +15,9 @@ class InputBiller extends StatefulWidget {
 }
 
 class InputBiller_ extends State<InputBiller> {
+  final billerid = TextEditingController();
+  final billername= TextEditingController();
+  final price= TextEditingController();
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -49,11 +52,11 @@ class InputBiller_ extends State<InputBiller> {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 30),
-              Input("Account Number", TextInputType.number, false),
+              Input("Account Number", TextInputType.number, false,billerid),
               const SizedBox(height: 20),
-              Input("Account Name", TextInputType.text, false),
+              Input("Account Name", TextInputType.text, false, billername),
               const SizedBox(height: 20),
-              Input("Amount", TextInputType.number, false),
+              Input("Amount", TextInputType.number, false, price),
               const SizedBox(height: 60),
               SizedBox(
                   height: 50, //height of button
