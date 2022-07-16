@@ -9,8 +9,14 @@ import 'package:tip_pay/screens/settings.dart';
 import 'package:tip_pay/screens/linkGmail.dart';
 import 'package:tip_pay/screens/bottom_nav.dart';
 import 'package:tip_pay/screens/topup_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
