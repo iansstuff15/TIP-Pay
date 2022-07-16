@@ -15,6 +15,7 @@ class TopupScreen extends StatefulWidget {
 }
 
 class TopupScreen_ extends State<TopupScreen> {
+  final amount= TextEditingController();
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -49,7 +50,7 @@ class TopupScreen_ extends State<TopupScreen> {
               //   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               // ),
               const SizedBox(height: 20),
-              Input("Amount", TextInputType.number, false),
+              Input("Amount", TextInputType.number, false, amount),
               const SizedBox(height: 20),
               SizedBox(
                   height: 50, //height of button
