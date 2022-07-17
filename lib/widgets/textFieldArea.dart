@@ -4,14 +4,14 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class Input extends StatelessWidget {
+class TextFieldArea extends StatelessWidget {
   String? label;
   TextInputType? keyboard;
   bool? obsureText;
   TextEditingController controller;
-  int? maxlength = 1;
-  Input(this.label, this.keyboard, this.obsureText, this.controller,
-      [this.maxlength]);
+  int? maxLines;
+  TextFieldArea(this.label, this.keyboard, this.obsureText, this.controller,
+      this.maxLines);
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +21,7 @@ class Input extends StatelessWidget {
         obscureText: obsureText!,
         controller: controller,
         textAlign: TextAlign.start,
+        maxLines: maxLines,
         decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),

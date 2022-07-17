@@ -6,7 +6,7 @@ import 'package:tip_pay/screens/login.dart';
 import 'package:tip_pay/screens/pay_main.dart';
 import 'package:tip_pay/screens/receive_main.dart';
 import 'package:tip_pay/screens/settings.dart';
-import 'package:tip_pay/screens/linkGmail.dart';
+import 'package:tip_pay/screens/feedback.dart';
 import 'package:tip_pay/screens/bottom_nav.dart';
 import 'package:tip_pay/screens/topup_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
