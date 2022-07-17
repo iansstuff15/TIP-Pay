@@ -3,6 +3,7 @@
 import 'dart:ui';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:slider_button/slider_button.dart';
 import 'package:tip_pay/screens/generate_qr.dart';
 import 'package:tip_pay/widgets/circleImage.dart';
 import 'package:tip_pay/widgets/input.dart';
@@ -15,13 +16,40 @@ class TopupScreen extends StatefulWidget {
 }
 
 class TopupScreen_ extends State<TopupScreen> {
-  final amount= TextEditingController();
+  final amount = TextEditingController();
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      bottomNavigationBar: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        child: SizedBox(
+          width: double.infinity,
+          child: SliderButton(
+              buttonColor: Colors.black,
+              action: () {
+                ///Do something here
+              },
+              label: const Text(
+                "Slide to Redeem",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Color(0xff4a4a4a),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 17,
+                ),
+              ),
+              icon: Container(
+                child: Icon(
+                  Icons.wallet,
+                  size: 30,
+                  color: Color.fromARGB(255, 210, 210, 210),
+                ),
+              )),
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
@@ -52,18 +80,6 @@ class TopupScreen_ extends State<TopupScreen> {
               const SizedBox(height: 20),
               Input("Amount", TextInputType.number, false, amount),
               const SizedBox(height: 20),
-              SizedBox(
-                  height: 50, //height of button
-                  width:
-                      double.infinity, //width of button equal to parent widget
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.black,
-                    ),
-                    onPressed: () {},
-                    child: const Text("Top-up"),
-                    //parameters of Button class
-                  ))
             ]),
           ),
         ),

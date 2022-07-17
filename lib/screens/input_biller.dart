@@ -3,6 +3,7 @@
 import 'dart:ui';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:slider_button/slider_button.dart';
 import 'package:tip_pay/screens/generate_qr.dart';
 import 'package:tip_pay/widgets/circleImage.dart';
 import 'package:tip_pay/widgets/input.dart';
@@ -16,61 +17,84 @@ class InputBiller extends StatefulWidget {
 
 class InputBiller_ extends State<InputBiller> {
   final billerid = TextEditingController();
-  final billername= TextEditingController();
-  final price= TextEditingController();
+  final billername = TextEditingController();
+  final price = TextEditingController();
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      bottomNavigationBar: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        child: SizedBox(
+          width: double.infinity,
+          child: SliderButton(
+              buttonColor: Colors.black,
+              action: () {
+                ///Do something here
+              },
+              label: const Text(
+                "Slide to Pay",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Color(0xff4a4a4a),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 17,
+                ),
+              ),
+              icon: Container(
+                child: Icon(
+                  Icons.wallet,
+                  size: 30,
+                  color: Color.fromARGB(255, 210, 210, 210),
+                ),
+              )),
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
             color: Colors.white,
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CircleImage(),
-                ],
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              const Text(
-                "Pay",
-                style: TextStyle(fontSize: 52, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              const Text(
-                "Input Biller",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 30),
-              Input("Account Number", TextInputType.number, false,billerid),
-              const SizedBox(height: 20),
-              Input("Account Name", TextInputType.text, false, billername),
-              const SizedBox(height: 20),
-              Input("Amount", TextInputType.number, false, price),
-              const SizedBox(height: 60),
-              SizedBox(
-                  height: 50, //height of button
-                  width:
-                      double.infinity, //width of button equal to parent widget
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.black,
-                    ),
-                    onPressed: () {},
-                    child: const Text("Pay"),
-                    //parameters of Button class
-                  ))
-            ]),
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            CircleImage(),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        const Text(
+                          "Pay",
+                          style: TextStyle(
+                              fontSize: 52, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        const Text(
+                          "Input Biller",
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(height: 30),
+                        Input("Account Number", TextInputType.number, false,
+                            billerid),
+                        const SizedBox(height: 20),
+                        Input("Account Name", TextInputType.text, false,
+                            billername),
+                        const SizedBox(height: 20),
+                        Input("Amount", TextInputType.number, false, price),
+                      ]),
+                ]),
           ),
         ),
       ),
