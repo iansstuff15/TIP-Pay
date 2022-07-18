@@ -6,6 +6,7 @@ import 'package:tip_pay/widgets/button_text.dart';
 import 'package:tip_pay/widgets/input.dart';
 import 'package:tip_pay/screens/bottom_nav.dart';
 import 'package:tip_pay/screens/signup.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'home.dart';
 
 class Login extends StatelessWidget {
@@ -15,6 +16,22 @@ class Login extends StatelessWidget {
   static String id = 'Login';
   @override
   Widget build(BuildContext context) {
+      Future confirmlogin() async{
+      final docacc = await FirebaseFirestore.instance.collection("Account").doc(studentid.text).get();
+      if(docacc.exists){
+        print("exists");
+        if(email.text == docacc.get("Email") && password.text == docacc.get("Password")){
+          print("OK");
+          Get.to(() => BottomNav(studentid: studentid.text));
+        }
+        else{
+          print("Invalid");
+        }
+
+      }else{
+        print("not exist");
+      }
+    }
     return Scaffold(
       body: SafeArea(
           child: Container(
@@ -53,7 +70,7 @@ class Login extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      ButtonText('Login', () => Get.to(BottomNav())),
+                      ButtonText('Login', ()=>confirmlogin()),
                       SizedBox(
                         width: 10,
                       ),
