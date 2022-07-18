@@ -25,10 +25,14 @@ class Login extends StatelessWidget {
           Get.to(() => BottomNav(studentid: studentid.text));
         }
         else{
+          const snackBar = SnackBar(content: Text("Invalid Email or Password"));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
           print("Invalid");
         }
 
       }else{
+        const snackBar = SnackBar(content: Text("Student ID does not exist."));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
         print("not exist");
       }
     }
