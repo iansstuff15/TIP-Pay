@@ -7,15 +7,23 @@ import 'package:tip_pay/widgets/circleImage.dart';
 import 'package:tip_pay/screens/pay_main.dart';
 import 'package:tip_pay/screens/receive_main.dart';
 import 'package:tip_pay/screens/topup_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Home extends StatelessWidget {
   static String id = 'home';
+  final String studentid;
+  const Home({
+    Key? key,
+    required this.studentid,}):super(key: key);
 
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-
+    Future getval() async{
+      final docacc = await FirebaseFirestore.instance.collection("Account").doc().get();
+    }
+    print(studentid);
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
