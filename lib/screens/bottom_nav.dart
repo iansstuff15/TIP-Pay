@@ -7,6 +7,11 @@ import 'package:tip_pay/screens/feedback.dart';
 import 'package:tip_pay/screens/settings.dart';
 
 class BottomNav extends StatefulWidget {
+  final String studentid;
+  BottomNav({
+    Key? key,
+    required this.studentid,
+}) : super (key: key);
   @override
   static String id = 'ButtomNav';
   BottomNav_ createState() => BottomNav_();
@@ -14,8 +19,8 @@ class BottomNav extends StatefulWidget {
 
 class BottomNav_ extends State<BottomNav> {
   int currentIndex = 0;
-  final pageScreens = [
-    Home(),
+  List<Widget> pageScreens() => [
+    Home(studentid: widget.studentid),
     const Center(child: Text("Transactions", style: TextStyle(fontSize: 30))),
     LinkGmail(),
     Settings(),
@@ -23,8 +28,9 @@ class BottomNav_ extends State<BottomNav> {
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> children = pageScreens();
     return Scaffold(
-      body: pageScreens[currentIndex],
+      body: children[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         fixedColor: Colors.black,
