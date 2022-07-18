@@ -6,8 +6,7 @@ import 'package:tip_pay/widgets/button_text.dart';
 import 'package:tip_pay/widgets/input.dart';
 import 'package:tip_pay/screens/bottom_nav.dart';
 import 'package:tip_pay/screens/signup.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'home.dart';
+import 'package:tip_pay/helper/data_manage.dart';
 
 class Login extends StatelessWidget {
   final studentid = TextEditingController();
@@ -17,8 +16,9 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
       Future confirmlogin() async{
-      final docacc = await FirebaseFirestore.instance.collection("Account").doc(studentid.text).get();
-      if(docacc.exists){
+      dynamic docacc = await DatabaseManager().getAccount(studentid);
+
+      if(docacc != null && docacc.exists){
         print("exists");
         if(email.text == docacc.get("Email") && password.text == docacc.get("Password")){
           print("OK");

@@ -5,10 +5,8 @@ import 'package:get/get.dart';
 import 'package:tip_pay/screens/login.dart';
 import 'package:tip_pay/widgets/button_text.dart';
 import 'package:tip_pay/widgets/input.dart';
-import 'package:tip_pay/screens/bottom_nav.dart';
-import 'package:tip_pay/main.dart';
-import 'home.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tip_pay/helper/data_manage.dart';
+
 
 class Signup extends StatelessWidget {
   final studentid = TextEditingController();
@@ -19,24 +17,7 @@ class Signup extends StatelessWidget {
   static String id = 'Signup';
   @override
   Widget build(BuildContext context) {
-    Future createacc() async {
-      print(studentid.text);
-      print(email.text);
-      print(password.text);
-      final docacc = FirebaseFirestore.instance.collection("Account").doc();
-      final json = {
-        "Student_id": studentid.text,
-        "First_name": Fname.text,
-        "Last_name": Lname.text,
-        "Email": email.text,
-        "Password": password.text,
-        "Total_spending": 0,
-        "Total_deposits": 0,
-        "balance": 0,
-        "redeem_promo": 0
-      };
-      await docacc.set(json);
-    }
+
 
     return Scaffold(
       body: SafeArea(
@@ -78,7 +59,7 @@ class Signup extends StatelessWidget {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: [ButtonText('Signup', () => createacc())],
+                    children: [ButtonText('Signup', () => DatabaseManager().createacc(studentid, email, password, Fname, Lname))],
                   ),
                   GestureDetector(
                     onTap: () => Get.to(Login()),
