@@ -14,6 +14,16 @@ class DatabaseManager{
       }
     }
 
+    Future payAccount() async {
+      final account = await collection_account.doc('1911942').get();
+      final balance = account.get('balance');
+      final json = {
+        'balance': balance-150
+      };
+      await collection_account.doc('1911942').set(json, SetOptions(merge: true));
+
+
+    }
 
     Future createacc(
         studentid, 
