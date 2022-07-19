@@ -7,7 +7,6 @@ import 'package:tip_pay/widgets/button_text.dart';
 import 'package:tip_pay/widgets/input.dart';
 import 'package:tip_pay/helper/data_manage.dart';
 
-
 class Signup extends StatelessWidget {
   final studentid = TextEditingController();
   final Fname = TextEditingController();
@@ -17,8 +16,6 @@ class Signup extends StatelessWidget {
   static String id = 'Signup';
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       body: SafeArea(
           child: Container(
@@ -59,10 +56,15 @@ class Signup extends StatelessWidget {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: [ButtonText('Signup', () => DatabaseManager().createacc(studentid, email, password, Fname, Lname))],
+                    children: [
+                      ButtonText(
+                          'Signup',
+                          () => DatabaseManager().createacc(
+                              studentid, email, password, Fname, Lname))
+                    ],
                   ),
                   GestureDetector(
-                    onTap: () => Get.to(Login()),
+                    onTap: () => Get.back(),
                     child: Text(
                       "Already have an account? Sign in",
                       style: TextStyle(fontWeight: FontWeight.bold),
