@@ -8,8 +8,8 @@ import 'package:tip_pay/widgets/button_text.dart';
 import 'package:tip_pay/widgets/circleImage.dart';
 
 class GenerateQR extends StatefulWidget {
-  @override
   static String id = 'GenerateQR';
+  @override
   GenerateQR_ createState() => GenerateQR_();
 }
 

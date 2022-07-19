@@ -10,8 +10,8 @@ import 'package:tip_pay/widgets/input.dart';
 import 'package:tip_pay/widgets/button_text.dart';
 
 class InputBiller extends StatefulWidget {
-  @override
   static String id = 'InputBiller';
+  @override
   InputBiller_ createState() => InputBiller_();
 }
 
