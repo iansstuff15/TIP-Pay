@@ -6,6 +6,9 @@ import 'package:get/get.dart';
 import 'package:tip_pay/screens/input_biller.dart';
 import 'package:tip_pay/screens/scanner_qr.dart';
 import 'package:tip_pay/widgets/circleImage.dart';
+import 'package:tip_pay/widgets/savedBiller.dart';
+
+import '../widgets/recentTransactions.dart';
 
 class PayMain extends StatefulWidget {
   @override
@@ -21,6 +24,7 @@ class PayMain_ extends State<PayMain> {
 
     return Scaffold(
         body: SafeArea(
+            child: SingleChildScrollView(
       child: Container(
         color: Colors.white,
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -168,8 +172,10 @@ class PayMain_ extends State<PayMain> {
               ),
             ],
           ),
+          SavedBiller(),
+          RecentTransactions(),
         ]),
       ),
-    ));
+    )));
   }
 }

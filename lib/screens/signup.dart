@@ -4,6 +4,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tip_pay/screens/bottom_nav.dart';
 import 'package:tip_pay/screens/home.dart';
 import 'package:tip_pay/screens/login.dart';
 import 'package:tip_pay/widgets/button_text.dart';
@@ -85,7 +86,7 @@ class Signup extends StatelessWidget {
                                     vertical: 10, horizontal: 20));
 
                             if (response == 'logging you in') {
-                              Get.to(Home());
+                              Get.to(BottomNav());
                             }
                           })
                         ],

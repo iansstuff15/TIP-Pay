@@ -79,7 +79,7 @@ class Login extends StatelessWidget {
                             margin: EdgeInsets.symmetric(
                                 vertical: 10, horizontal: 20));
                         if (response.contains('Welcome back')) {
-                          Get.to(Home());
+                          Get.to(BottomNav());
                         }
                       }),
                       SizedBox(

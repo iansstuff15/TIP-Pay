@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:tip_pay/screens/home.dart';
 import 'package:tip_pay/screens/feedback.dart';
 import 'package:tip_pay/screens/settings.dart';
+import 'package:tip_pay/screens/transactions.dart';
 
 class BottomNav extends StatefulWidget {
   @override
@@ -16,8 +17,7 @@ class BottomNav_ extends State<BottomNav> {
   int currentIndex = 0;
   List<Widget> pageScreens() => [
         Home(),
-        const Center(
-            child: Text("Transactions", style: TextStyle(fontSize: 30))),
+        Transactions(),
         LinkGmail(),
         Settings(),
       ];

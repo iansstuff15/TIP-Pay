@@ -3,10 +3,13 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/utils.dart';
+import 'package:tip_pay/stateManagement/controller.dart';
 
 class DatabaseManager {
+  StateController stateController = Get.put(StateController());
   final CollectionReference collection_account =
       FirebaseFirestore.instance.collection("users");
   dynamic? account;
@@ -30,6 +33,15 @@ class DatabaseManager {
         final uid = await credential.user!.uid;
         final account = await getAccount(uid);
         final firstName = account['First_name'];
+        stateController.setUserData(
+            uid,
+            account['First_name'],
+            account['Last_name'],
+            account['Email'],
+            account['Student_id'],
+            account['Total_deposits'],
+            account['Total_spending'],
+            account['balance']);
         return ('Welcome back, ${firstName}!');
       } else {
         return ('Email input not valid email');

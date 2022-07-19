@@ -8,6 +8,9 @@ import 'package:tip_pay/screens/generate_qr.dart';
 import 'package:tip_pay/widgets/circleImage.dart';
 import 'package:tip_pay/widgets/input.dart';
 import 'package:tip_pay/widgets/button_text.dart';
+import 'package:tip_pay/widgets/recentTransactions.dart';
+
+import '../widgets/billingInformation.dart';
 
 class TopupScreen extends StatefulWidget {
   static String id = 'Topup';
@@ -73,13 +76,12 @@ class TopupScreen_ extends State<TopupScreen> {
               const SizedBox(
                 height: 5,
               ),
-              // const Text(
-              //   "Input Biller",
-              //   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              // ),
+              const SizedBox(height: 10),
+              BillingInformation(),
               const SizedBox(height: 20),
               Input("Amount", TextInputType.number, false, amount),
               const SizedBox(height: 20),
+              RecentTransactions(),
             ]),
           ),
         ),
