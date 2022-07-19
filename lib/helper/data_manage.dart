@@ -14,6 +14,11 @@ class DatabaseManager{
       }
     }
 
+    Future getval() async{
+      final docacc = await FirebaseFirestore.instance.collection("Account").doc('123').get();
+      print(docacc);
+      return docacc;
+    }
     Future createacc(
         studentid, 
         email, 
