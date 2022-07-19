@@ -1,5 +1,5 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables
-
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tip_pay/widgets/card.dart';
@@ -8,7 +8,7 @@ import 'package:tip_pay/screens/pay_main.dart';
 import 'package:tip_pay/screens/receive_main.dart';
 import 'package:tip_pay/screens/topup_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:tip_pay/helper/data_manage.dart';
 class Home extends StatefulWidget {
   static String id = 'home';
   final String studentid;
@@ -21,6 +21,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  var total_spending;
   @override
   /*void initState(){
     super.initState();
@@ -30,6 +31,25 @@ class _HomeState extends State<Home> {
     });
 
   }*/
+
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getTotalSpendings();
+  }
+
+  getTotalSpendings() async{
+    dynamic t_spending = await DatabaseManager().getAccount('123');
+
+    if(t_spending == null){
+      print("cannot retrieve data");
+    }else{
+      setState(() {
+        total_spending = t_spending.get('Total_spending');
+      });
+    }
+  log('$total_spending');
+  }
   @override
   Widget build(BuildContext context) {
     DocumentReference data  = FirebaseFirestore.instance.collection("Account").doc(widget.studentid);
@@ -46,9 +66,9 @@ class _HomeState extends State<Home> {
         ),
       );
     }*/
-    Future getval() async{
-      final docacc = await FirebaseFirestore.instance.collection("Account").doc().get();
-    }
+    // Future getval() async{
+    //   final docacc = await FirebaseFirestore.instance.collection("Account").doc().get();
+    // }
 
     return Scaffold(
       body: SafeArea(
@@ -79,7 +99,7 @@ class _HomeState extends State<Home> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children:[
                             Text(
-                              "₱122,394.0",
+                              "$total_spending",
                             style: TextStyle(
                               fontSize: 20,
                             ),

@@ -6,7 +6,7 @@ class DatabaseManager{
 
     Future getAccount(studentid) async{
       try{
-        final account = await collection_account.doc(studentid.text).get();
+        final account = await collection_account.doc(studentid).get();
         return account;
       }catch (e){
         print(e.toString());
@@ -14,11 +14,7 @@ class DatabaseManager{
       }
     }
 
-    Future getval() async{
-      final docacc = await FirebaseFirestore.instance.collection("Account").doc('123').get();
-      print(docacc);
-      return docacc;
-    }
+
     Future createacc(
         studentid, 
         email, 

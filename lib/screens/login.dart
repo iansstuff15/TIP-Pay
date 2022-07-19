@@ -16,7 +16,7 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
       Future confirmlogin() async{
-      dynamic docacc = await DatabaseManager().getAccount(studentid);
+      dynamic docacc = await DatabaseManager().getAccount(studentid.text);
 
       if(docacc != null && docacc.exists){
         print("exists");
