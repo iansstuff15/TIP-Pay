@@ -2,6 +2,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tip_pay/screens/login.dart';
 import 'package:tip_pay/widgets/card.dart';
 import 'package:tip_pay/widgets/circleImage.dart';
 import 'package:tip_pay/screens/pay_main.dart';
@@ -9,66 +10,44 @@ import 'package:tip_pay/screens/receive_main.dart';
 import 'package:tip_pay/screens/topup_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:tip_pay/helper/data_manage.dart';
+
 class Home extends StatefulWidget {
   static String id = 'home';
-  final String studentid;
-  const Home({
-    Key? key,
-    required this.studentid,}):super(key: key);
-
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  var total_spending;
+  var total_deposits ='';
+  var total_spending = '';
   @override
-  /*void initState(){
-    super.initState();
-    data.get().then((DocumentSnapshot ds){
-      ttlspend = ds["Total_spending"].toString();
-      print(ttlspend);
-    });
+  final getstudentid = Get.find<LoginController>();
 
-  }*/
-
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getTotalSpendings();
-  }
-
-  getTotalSpendings() async{
-    dynamic t_spending = await DatabaseManager().getAccount(widget.studentid);
+  getTotals() async{
+    dynamic t_spending = await DatabaseManager().getAccount(getstudentid.test.value);
 
     if(t_spending == null){
       print("cannot retrieve data");
     }else{
       setState(() {
-        total_spending = t_spending.get('Total_spending');
+        total_spending = t_spending.get('Total_spending').toString();
+        total_deposits = t_spending.get("Total_deposits").toString();
       });
     }
-  log('$total_spending');
+    log('$total_spending');
   }
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getTotals();
+  }
+
   @override
   Widget build(BuildContext context) {
-    DocumentReference data  = FirebaseFirestore.instance.collection("Account").doc(widget.studentid);
-   String ttlspend = '';
+
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    /*Future getdata()async {
-      DocumentSnapshot ds = await FirebaseFirestore.instance.collection("Account").doc(widget.studentid).get();
-      ttlspend = ds.get("Total_spending").toString();
-      Text(
-        ttlspend,
-        style: TextStyle(
-          fontSize: 20,
-        ),
-      );
-    }*/
-    // Future getval() async{
-    //   final docacc = await FirebaseFirestore.instance.collection("Account").doc().get();
-    // }
+
 
     return Scaffold(
       body: SafeArea(
@@ -99,7 +78,7 @@ class _HomeState extends State<Home> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children:[
                             Text(
-                              "$total_spending",
+                              total_spending,
                             style: TextStyle(
                               fontSize: 20,
                             ),
@@ -124,9 +103,9 @@ class _HomeState extends State<Home> {
                       const Spacer(),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children:  [
                           Text(
-                            "₱122,394.0",
+                            total_deposits,
                             style: TextStyle(
                               fontSize: 20,
                             ),

@@ -20,7 +20,7 @@ class BottomNav extends StatefulWidget {
 class BottomNav_ extends State<BottomNav> {
   int currentIndex = 0;
   List<Widget> pageScreens() => [
-    Home(studentid: widget.studentid),
+    Home(),
     const Center(child: Text("Transactions", style: TextStyle(fontSize: 30))),
     LinkGmail(),
     Settings(),

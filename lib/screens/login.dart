@@ -7,7 +7,12 @@ import 'package:tip_pay/widgets/input.dart';
 import 'package:tip_pay/screens/bottom_nav.dart';
 import 'package:tip_pay/screens/signup.dart';
 import 'package:tip_pay/helper/data_manage.dart';
-
+class LoginController extends GetxController{
+  var test = "".obs;
+  change(String arg){
+    test.value = arg;
+  }
+}
 class Login extends StatelessWidget {
   final studentid = TextEditingController();
   final email = TextEditingController();
@@ -15,6 +20,7 @@ class Login extends StatelessWidget {
   static String id = 'Login';
   @override
   Widget build(BuildContext context) {
+    final cont = Get.put(LoginController());
       Future confirmlogin() async{
       dynamic docacc = await DatabaseManager().getAccount(studentid.text);
 
@@ -22,7 +28,10 @@ class Login extends StatelessWidget {
         print("exists");
         if(email.text == docacc.get("Email") && password.text == docacc.get("Password")){
           print("OK");
-          Get.to(() => BottomNav(studentid: studentid.text));
+          print(cont.test);
+          cont.change(studentid.text);
+          print(cont.test);
+          Get.to(() => BottomNav());
         }
         else{
           const snackBar = SnackBar(content: Text("Invalid Email or Password"));

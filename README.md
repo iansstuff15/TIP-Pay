@@ -1,6 +1,6 @@
-# tip_pay
+# TIPay
 
-A new Flutter project.
+A Digital Wallet for Technological Institute of the Philippines.
 
 ## Getting Started
 
