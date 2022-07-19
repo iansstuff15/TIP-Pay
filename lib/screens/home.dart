@@ -39,7 +39,7 @@ class _HomeState extends State<Home> {
   }
 
   getTotalSpendings() async{
-    dynamic t_spending = await DatabaseManager().getAccount('123');
+    dynamic t_spending = await DatabaseManager().getAccount(widget.studentid);
 
     if(t_spending == null){
       print("cannot retrieve data");

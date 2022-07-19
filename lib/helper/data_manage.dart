@@ -25,7 +25,7 @@ class DatabaseManager{
       print(studentid.text);
       print(email.text);
       print(password.text);
-      final docacc = collection_account.doc();
+      final docacc = collection_account.doc(studentid.text);
       final json = {
         "Student_id": studentid.text,
         "First_name": Fname.text,
