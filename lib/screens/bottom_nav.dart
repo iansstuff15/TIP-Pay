@@ -7,10 +7,8 @@ import 'package:tip_pay/screens/feedback.dart';
 import 'package:tip_pay/screens/settings.dart';
 
 class BottomNav extends StatefulWidget {
-  final String studentid;
   BottomNav({
     Key? key,
-    required this.studentid,
 }) : super (key: key);
   @override
   static String id = 'ButtomNav';
