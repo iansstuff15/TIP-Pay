@@ -10,8 +10,9 @@ class Input extends StatelessWidget {
   bool? obsureText;
   TextEditingController controller;
   int? maxlength = 1;
+  bool textCapitalization;
   Input(this.label, this.keyboard, this.obsureText, this.controller,
-      [this.maxlength]);
+      [this.textCapitalization = false]);
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +22,9 @@ class Input extends StatelessWidget {
         obscureText: obsureText!,
         controller: controller,
         textAlign: TextAlign.start,
+        textCapitalization: textCapitalization
+            ? TextCapitalization.words
+            : TextCapitalization.none,
         decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
