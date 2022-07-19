@@ -64,8 +64,10 @@ class Login extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       ButtonText('Login', () async {
-                        final response = await DatabaseManager()
-                            .login(email.text, password.text);
+                        final response = await DatabaseManager().login(
+                            email.text,
+                            password.text,
+                            int.parse(studentid.text));
                         Get.snackbar(
                             response.contains('Welcome back')
                                 ? 'Success'

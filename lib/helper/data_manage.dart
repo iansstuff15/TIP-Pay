@@ -12,7 +12,7 @@ class DatabaseManager {
   StateController stateController = Get.put(StateController());
   final CollectionReference collection_account =
       FirebaseFirestore.instance.collection("users");
-  dynamic? account;
+
   Future getAccount(uid) async {
     try {
       final account = await collection_account.doc(uid).get();
@@ -25,6 +25,7 @@ class DatabaseManager {
   Future login(
     String? email,
     String? password,
+    int? studentNumber,
   ) async {
     try {
       if (GetUtils.isEmail(email!)) {
@@ -32,17 +33,22 @@ class DatabaseManager {
             .signInWithEmailAndPassword(email: email, password: password!);
         final uid = await credential.user!.uid;
         final account = await getAccount(uid);
+
         final firstName = account['First_name'];
-        stateController.setUserData(
-            uid,
-            account['First_name'],
-            account['Last_name'],
-            account['Email'],
-            account['Student_id'],
-            account['Total_deposits'],
-            account['Total_spending'],
-            account['balance']);
-        return ('Welcome back, ${firstName}!');
+        if (GetUtils.isEqual(studentNumber!, account['Student_id'])) {
+          stateController.setUserData(
+              uid,
+              account['First_name'],
+              account['Last_name'],
+              account['Email'],
+              account['Student_id'],
+              account['Total_deposits'],
+              account['Total_spending'],
+              account['balance']);
+          return ('Welcome back, ${firstName}!');
+        } else {
+          return ('Student number is not found does not match account\'s student number');
+        }
       } else {
         return ('Email input not valid email');
       }
