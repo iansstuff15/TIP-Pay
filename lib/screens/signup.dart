@@ -59,8 +59,13 @@ class Signup extends StatelessWidget {
                     children: [
                       ButtonText(
                           'Signup',
-                          () => DatabaseManager().createacc(
-                              studentid, email, password, Fname, Lname))
+                          () async {
+                            await DatabaseManager().createacc(
+                              studentid, email, password, Fname, Lname
+                              );
+                            Get.back();
+                            }
+                              )
                     ],
                   ),
                   GestureDetector(
