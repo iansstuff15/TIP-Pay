@@ -1,52 +1,92 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:flutter/material.dart';
+// import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/utils.dart';
 
-class DatabaseManager{
-  final CollectionReference collection_account =
-    FirebaseFirestore.instance.collection("Account");
+class DatabaseManager {
+  final CollectionReference accountcollection =
+      FirebaseFirestore.instance.collection("users");
 
-    Future getAccount(studentid) async{
-      try{
-        final account = await collection_account.doc(studentid).get();
-        return account;
-      }catch (e){
-        print(e.toString());
-        return null;
+  Future getAccount(uid) async {
+    try {
+      final account = await accountcollection.doc(uid).get();
+      log(account.toString());
+    } catch (e) {
+      return e;
+    }
+  }
+
+  Future login(
+    String? email,
+    String? password,
+  ) async {
+    try {
+      if (GetUtils.isEmail(email!)) {
+        final credential = await FirebaseAuth.instance
+            .signInWithEmailAndPassword(email: email, password: password!);
+        final uid = credential.user!.uid;
+        await getAccount(uid);
+
+        return ('logging you in');
+      } else {
+        return ('Email input not valid email');
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        return ('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        return ('Wrong password provided for that user.');
       }
     }
+  }
 
-    Future payAccount() async {
-      final account = await collection_account.doc('1911942').get();
-      final balance = account.get('balance');
-      final json = {
-        'balance': balance-150
-      };
-      await collection_account.doc('1911942').set(json, SetOptions(merge: true));
+  Future createacc(
+    int? studentid,
+    String? email,
+    String? password,
+    String? firstName,
+    String? lastName,
+  ) async {
+    // log('${studentid.toString()}  ${email}  ${password}, ${firstName}, ${lastName}');
+    if (GetUtils.isEmail(email!)) {
+      try {
+        final credential =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: email,
+          password: password!,
+        );
 
+        final uid = credential.user!.uid;
 
+        final docacc = accountcollection.doc(uid);
+        final body = {
+          'UID': uid,
+          "Student_id": studentid,
+          "First_name": firstName,
+          "Last_name": lastName,
+          "Email": email,
+          "Password": password,
+          "Total_spending": 0,
+          "Total_deposits": 0,
+          "balance": 10000,
+          "redeem_promo": 0
+        };
+        await docacc.set(body);
+        return ('logging you in');
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          return (e.code);
+        } else if (e.code == 'email-already-in-use') {
+          return (e.code);
+        }
+      } catch (e) {
+        return (e);
+      }
+    } else {
+      return ('Email input not valid email');
     }
-
-    Future createacc(
-        studentid, 
-        email, 
-        password,
-        Fname,
-        Lname,
-      ) async {
-      print(studentid.text);
-      print(email.text);
-      print(password.text);
-      final docacc = collection_account.doc(studentid.text);
-      final json = {
-        "Student_id": studentid.text,
-        "First_name": Fname.text,
-        "Last_name": Lname.text,
-        "Email": email.text,
-        "Password": password.text,
-        "Total_spending": 0,
-        "Total_deposits": 0,
-        "balance": 0,
-        "redeem_promo": 0
-      };
-      await docacc.set(json);
-    }
+  }
 }
