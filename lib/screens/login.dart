@@ -67,16 +67,20 @@ class Login extends StatelessWidget {
                         final response = await DatabaseManager()
                             .login(email.text, password.text);
                         Get.snackbar(
-                            response == 'logging you in' ? 'Success' : 'Error',
+                            response.contains('Welcome back')
+                                ? 'Success'
+                                : 'Error',
                             response,
-                            backgroundColor: response == 'logging you in'
+                            backgroundColor: response.contains('Welcome back')
                                 ? Colors.green
                                 : Colors.red,
                             snackPosition: SnackPosition.BOTTOM,
                             colorText: Colors.white,
                             margin: EdgeInsets.symmetric(
                                 vertical: 10, horizontal: 20));
-                        Get.to(Home());
+                        if (response.contains('Welcome back')) {
+                          Get.to(Home());
+                        }
                       }),
                       SizedBox(
                         width: 10,

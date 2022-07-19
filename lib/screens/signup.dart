@@ -72,11 +72,11 @@ class Signup extends StatelessWidget {
                                 firstName.text,
                                 lastName.text);
                             Get.snackbar(
-                                response == 'logging you in'
+                                response.contains('Welcome')
                                     ? 'Success'
                                     : 'Error',
                                 response,
-                                backgroundColor: response == 'logging you in'
+                                backgroundColor: response.contains('Welcome')
                                     ? Colors.green
                                     : Colors.red,
                                 snackPosition: SnackPosition.BOTTOM,

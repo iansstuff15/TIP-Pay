@@ -9,11 +9,11 @@ import 'package:get/utils.dart';
 class DatabaseManager {
   final CollectionReference collection_account =
       FirebaseFirestore.instance.collection("users");
-
+  dynamic? account;
   Future getAccount(uid) async {
     try {
       final account = await collection_account.doc(uid).get();
-      log(account.toString());
+      return (account.data());
     } catch (e) {
       return e;
     }
@@ -26,11 +26,11 @@ class DatabaseManager {
     try {
       if (GetUtils.isEmail(email!)) {
         final credential = await FirebaseAuth.instance
-            .signInWithEmailAndPassword(email: email!, password: password!);
+            .signInWithEmailAndPassword(email: email, password: password!);
         final uid = await credential.user!.uid;
-        await getAccount(uid);
-
-        return ('logging you in');
+        final account = await getAccount(uid);
+        final firstName = account['First_name'];
+        return ('Welcome back, ${firstName}!');
       } else {
         return ('Email input not valid email');
       }
@@ -75,7 +75,7 @@ class DatabaseManager {
           "redeem_promo": 0
         };
         await docacc.set(body);
-        return ('logging you in');
+        return ('Welcome, ${firstName}');
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           return (e.code);
