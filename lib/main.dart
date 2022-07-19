@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       home: Login(),
       routes: {
         Login.id: (context) => Login(),
-        Home.id: (context) => const Home(studentid: '',),
+        Home.id: (context) =>  Home(),
         PayMain.id: (context) => PayMain(),
         Receive.id: (context) => Receive(),
         Settings.id: (context) => Settings(),
