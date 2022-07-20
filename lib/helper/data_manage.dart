@@ -79,7 +79,7 @@ class DatabaseManager {
 
         final uid = credential.user!.uid;
 
-        final docacc = accountcollection.doc(uid);
+        final docacc = collection_account.doc(uid);
         final body = {
           'UID': uid,
           "Student_id": studentid,
