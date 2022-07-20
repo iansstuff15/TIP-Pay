@@ -1,15 +1,11 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tip_pay/screens/login.dart';
 import 'package:tip_pay/widgets/card.dart';
 import 'package:tip_pay/widgets/circleImage.dart';
 import 'package:tip_pay/screens/pay_main.dart';
 import 'package:tip_pay/screens/receive_main.dart';
 import 'package:tip_pay/screens/topup_screen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:tip_pay/helper/data_manage.dart';
 import 'package:tip_pay/widgets/recentTransactions.dart';
 import 'package:tip_pay/widgets/totalSpendAndDeposit.dart';
 
@@ -20,31 +16,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  var total_deposits = '';
-  var total_spending = '';
-  @override
-  final getstudentid = Get.find<LoginController>();
-
-  getTotals() async {
-    dynamic t_spending =
-        await DatabaseManager().getAccount(getstudentid.test.value);
-
-    if (t_spending == null) {
-      print("cannot retrieve data");
-    } else {
-      setState(() {
-        total_spending = t_spending.get('Total_spending').toString();
-        total_deposits = t_spending.get("Total_deposits").toString();
-      });
-    }
-    log('$total_spending');
-  }
-
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getTotals();
-  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:ffi';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -19,6 +20,24 @@ class DatabaseManager {
       return (account.data());
     } catch (e) {
       return e;
+    }
+  }
+
+  Future payment(double payment) async {
+    double balance =  double.parse(stateController.user.balance.toString());
+    String uid = (stateController.user.uid).toString();
+    print(balance);
+    if(payment<balance){
+      try{
+        final docacc = collection_account.doc(uid);
+        final json = {
+          'balance': balance - payment
+        };
+        docacc.set(json, SetOptions(merge: true));
+      }catch (e){
+        print(e);
+      }
+      
     }
   }
 
