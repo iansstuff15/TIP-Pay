@@ -43,6 +43,15 @@ class DatabaseManager {
       return "Insufficient funds";
     }
   }
+    Future getTransacs(uid) async {
+    try {
+      QuerySnapshot accounttrans = await collection_account.doc(uid).collection("Transactions").get();
+      final translist = accounttrans.docs.map((doc) => doc.data()).toList();
+      return (translist);
+    } catch (e) {
+      return e;
+    }
+  }
 
   Future login(
     String? email,
@@ -66,7 +75,8 @@ class DatabaseManager {
               account['Student_id'],
               account['Total_deposits'],
               account['Total_spending'],
-              account['balance']);
+              account['balance'],
+              accountrans);
           return ('Welcome back, ${firstName}!');
         } else {
           return ('Student number is not found does not match account\'s student number');

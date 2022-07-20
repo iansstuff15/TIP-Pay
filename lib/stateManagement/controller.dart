@@ -14,5 +14,6 @@ class StateController extends GetxController {
     user.totalDeposits.value = totalDeposits;
     user.totalSpending.value = totalSpending;
     user.balance.value = balance;
+    user.translist = translist;
   }
 }
