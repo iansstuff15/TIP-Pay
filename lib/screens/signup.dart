@@ -4,6 +4,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tip_pay/screens/bottom_nav.dart';
 import 'package:tip_pay/screens/home.dart';
 import 'package:tip_pay/screens/login.dart';
 import 'package:tip_pay/widgets/button_text.dart';
@@ -72,11 +73,11 @@ class Signup extends StatelessWidget {
                                 firstName.text,
                                 lastName.text);
                             Get.snackbar(
-                                response == 'logging you in'
+                                response.contains('Welcome')
                                     ? 'Success'
                                     : 'Error',
                                 response,
-                                backgroundColor: response == 'logging you in'
+                                backgroundColor: response.contains('Welcome')
                                     ? Colors.green
                                     : Colors.red,
                                 snackPosition: SnackPosition.BOTTOM,
@@ -85,7 +86,7 @@ class Signup extends StatelessWidget {
                                     vertical: 10, horizontal: 20));
 
                             if (response == 'logging you in') {
-                              Get.to(Home());
+                              Get.to(BottomNav());
                             }
                           })
                         ],

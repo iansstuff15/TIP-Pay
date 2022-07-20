@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:tip_pay/dataModels/user.dart';
 import 'package:tip_pay/screens/home.dart';
 import 'package:tip_pay/screens/input_biller.dart';
 import 'package:tip_pay/screens/login.dart';
@@ -17,13 +20,10 @@ Future main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       home: Login(),
       routes: {
         Login.id: (context) => Login(),
-        Home.id: (context) =>  Home(),
+        Home.id: (context) => Home(),
         PayMain.id: (context) => PayMain(),
         Receive.id: (context) => Receive(),
         Settings.id: (context) => Settings(),

@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:tip_pay/screens/profile.dart';
 
 class CircleImage extends StatelessWidget {
   double? size;
@@ -9,7 +11,10 @@ class CircleImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GestureDetector(
+      onTap: () {
+        Get.to(Profile());
+      },
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10000),
         child: Image(

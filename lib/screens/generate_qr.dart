@@ -6,6 +6,9 @@ import 'package:get/get.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:tip_pay/widgets/button_text.dart';
 import 'package:tip_pay/widgets/circleImage.dart';
+import 'package:tip_pay/widgets/totalSpendAndDeposit.dart';
+
+import '../widgets/billingInformation.dart';
 
 class GenerateQR extends StatefulWidget {
   static String id = 'GenerateQR';
@@ -45,8 +48,13 @@ class GenerateQR_ extends State<GenerateQR> {
                   style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
-                  height: 40,
+                  height: 20,
                 ),
+                BillingInformation(),
+                SizedBox(
+                  height: 10,
+                ),
+                TotalSpendAndDeposit(),
                 SizedBox(
                   height: 20,
                 ),

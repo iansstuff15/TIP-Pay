@@ -2,18 +2,21 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:flutter/material.dart';
-// import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/utils.dart';
+import 'package:tip_pay/stateManagement/controller.dart';
 
 class DatabaseManager {
-  final CollectionReference accountcollection =
+  StateController stateController = Get.put(StateController());
+  final CollectionReference collection_account =
       FirebaseFirestore.instance.collection("users");
 
   Future getAccount(uid) async {
     try {
-      final account = await accountcollection.doc(uid).get();
-      log(account.toString());
+      final account = await collection_account.doc(uid).get();
+      return (account.data());
     } catch (e) {
       return e;
     }
@@ -22,15 +25,30 @@ class DatabaseManager {
   Future login(
     String? email,
     String? password,
+    int? studentNumber,
   ) async {
     try {
       if (GetUtils.isEmail(email!)) {
         final credential = await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: email, password: password!);
-        final uid = credential.user!.uid;
-        await getAccount(uid);
+        final uid = await credential.user!.uid;
+        final account = await getAccount(uid);
 
-        return ('logging you in');
+        final firstName = account['First_name'];
+        if (GetUtils.isEqual(studentNumber!, account['Student_id'])) {
+          stateController.setUserData(
+              uid,
+              account['First_name'],
+              account['Last_name'],
+              account['Email'],
+              account['Student_id'],
+              account['Total_deposits'],
+              account['Total_spending'],
+              account['balance']);
+          return ('Welcome back, ${firstName}!');
+        } else {
+          return ('Student number is not found does not match account\'s student number');
+        }
       } else {
         return ('Email input not valid email');
       }
@@ -75,7 +93,7 @@ class DatabaseManager {
           "redeem_promo": 0
         };
         await docacc.set(body);
-        return ('logging you in');
+        return ('Welcome, ${firstName}');
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           return (e.code);

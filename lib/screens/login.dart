@@ -64,19 +64,25 @@ class Login extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       ButtonText('Login', () async {
-                        final response = await DatabaseManager()
-                            .login(email.text, password.text);
+                        final response = await DatabaseManager().login(
+                            email.text,
+                            password.text,
+                            int.parse(studentid.text));
                         Get.snackbar(
-                            response == 'logging you in' ? 'Success' : 'Error',
+                            response.contains('Welcome back')
+                                ? 'Success'
+                                : 'Error',
                             response,
-                            backgroundColor: response == 'logging you in'
+                            backgroundColor: response.contains('Welcome back')
                                 ? Colors.green
                                 : Colors.red,
                             snackPosition: SnackPosition.BOTTOM,
                             colorText: Colors.white,
                             margin: EdgeInsets.symmetric(
                                 vertical: 10, horizontal: 20));
-                        Get.to(Home());
+                        if (response.contains('Welcome back')) {
+                          Get.to(BottomNav());
+                        }
                       }),
                       SizedBox(
                         width: 10,
