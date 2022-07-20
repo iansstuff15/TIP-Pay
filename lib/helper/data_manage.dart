@@ -34,10 +34,13 @@ class DatabaseManager {
           'balance': balance - payment
         };
         docacc.set(json, SetOptions(merge: true));
+        return ("Payment Success");
       }catch (e){
         print(e);
       }
       
+    }else{
+      return "Insufficient funds";
     }
   }
 
