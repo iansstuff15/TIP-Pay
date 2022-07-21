@@ -76,7 +76,7 @@ class DatabaseManager {
               account['Total_deposits'],
               account['Total_spending'],
               account['balance'],
-              accountrans);
+              account['transactions']);
           return ('Welcome back, ${firstName}!');
         } else {
           return ('Student number is not found does not match account\'s student number');

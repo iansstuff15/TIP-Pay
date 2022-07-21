@@ -16,5 +16,5 @@ class UserData {
   var totalSpending = 0.obs;
   var uid = ''.obs;
   var balance = 0.obs;
-  List translist = [];
+  var transactions = [].obs;
 }
