@@ -3,11 +3,13 @@
 import 'dart:ui';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:slider_button/slider_button.dart';
+import 'package:slide_to_confirm/slide_to_confirm.dart';
+
 import 'package:tip_pay/screens/generate_qr.dart';
 import 'package:tip_pay/widgets/circleImage.dart';
 import 'package:tip_pay/widgets/input.dart';
 import 'package:tip_pay/widgets/button_text.dart';
+import 'package:tip_pay/widgets/slider.dart';
 
 class InputBiller extends StatefulWidget {
   @override
@@ -26,32 +28,8 @@ class InputBiller_ extends State<InputBiller> {
 
     return Scaffold(
       bottomNavigationBar: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: SizedBox(
-          width: double.infinity,
-          child: SliderButton(
-              buttonColor: Colors.black,
-              action: () {
-                ///Do something here
-              },
-              label: const Text(
-                "Slide to Pay",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Color(0xff4a4a4a),
-                  fontWeight: FontWeight.w500,
-                  fontSize: 17,
-                ),
-              ),
-              icon: Container(
-                child: Icon(
-                  Icons.wallet,
-                  size: 30,
-                  color: Color.fromARGB(255, 210, 210, 210),
-                ),
-              )),
-        ),
-      ),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: SliderButton(width)),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
