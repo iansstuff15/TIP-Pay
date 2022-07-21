@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:ffi';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,6 +18,36 @@ class DatabaseManager {
     try {
       final account = await collection_account.doc(uid).get();
       return (account.data());
+    } catch (e) {
+      return e;
+    }
+  }
+
+  Future payment(double payment) async {
+    double balance =  double.parse(stateController.user.balance.toString());
+    String uid = (stateController.user.uid).toString();
+    print(balance);
+    if(payment<balance){
+      try{
+        final docacc = collection_account.doc(uid);
+        final json = {
+          'balance': balance - payment
+        };
+        docacc.set(json, SetOptions(merge: true));
+        return ("Payment Success");
+      }catch (e){
+        print(e);
+      }
+      
+    }else{
+      return "Insufficient funds";
+    }
+  }
+    Future getTransacs(uid) async {
+    try {
+      QuerySnapshot accounttrans = await collection_account.doc(uid).collection("Transactions").get();
+      final translist = accounttrans.docs.map((doc) => doc.data()).toList();
+      return (translist);
     } catch (e) {
       return e;
     }
@@ -44,7 +75,8 @@ class DatabaseManager {
               account['Student_id'],
               account['Total_deposits'],
               account['Total_spending'],
-              account['balance']);
+              account['balance'],
+              accountrans);
           return ('Welcome back, ${firstName}!');
         } else {
           return ('Student number is not found does not match account\'s student number');
@@ -68,7 +100,7 @@ class DatabaseManager {
     String? firstName,
     String? lastName,
   ) async {
-    log('${studentid.toString()}  ${email}  ${password}, ${firstName}, ${lastName}');
+    // log('${studentid.toString()}  ${email}  ${password}, ${firstName}, ${lastName}');
     if (GetUtils.isEmail(email!)) {
       try {
         final credential =
@@ -77,7 +109,7 @@ class DatabaseManager {
           password: password!,
         );
 
-        final uid = await credential.user!.uid;
+        final uid = credential.user!.uid;
 
         final docacc = collection_account.doc(uid);
         final body = {

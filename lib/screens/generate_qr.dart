@@ -11,8 +11,8 @@ import 'package:tip_pay/widgets/totalSpendAndDeposit.dart';
 import '../widgets/billingInformation.dart';
 
 class GenerateQR extends StatefulWidget {
-  @override
   static String id = 'GenerateQR';
+  @override
   GenerateQR_ createState() => GenerateQR_();
 }
 

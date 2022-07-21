@@ -1,15 +1,17 @@
 // ignore_for_file: avoid_unnecessary_containers, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, prefer_const_constructors
 
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:tip_pay/screens/home.dart';
 import 'package:tip_pay/screens/feedback.dart';
 import 'package:tip_pay/screens/settings.dart';
 import 'package:tip_pay/screens/transactions.dart';
 
+
+
 class BottomNav extends StatefulWidget {
-  @override
   static String id = 'ButtomNav';
+  const BottomNav({Key? key}) : super(key: key);
+  @override
   BottomNav_ createState() => BottomNav_();
 }
 

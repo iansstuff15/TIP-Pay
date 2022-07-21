@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:tip_pay/stateManagement/controller.dart';
 
 class CardContainer extends StatelessWidget {
-  StateController stateController = Get.put(StateController());
+  StateController stateController = Get.find<StateController>();
   @override
   Widget build(BuildContext context) {
     return Container(
