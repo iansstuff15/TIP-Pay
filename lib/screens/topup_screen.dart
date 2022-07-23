@@ -30,7 +30,7 @@ class TopupScreen_ extends State<TopupScreen> {
     return Scaffold(
       bottomNavigationBar: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: SliderButton(width)),
+          child: SliderButton(width, () => {})),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(

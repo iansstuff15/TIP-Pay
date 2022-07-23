@@ -1,9 +1,11 @@
 // ignore_for_file: avoid_unnecessary_containers, sized_box_for_whitespace, prefer_const_literals_to_create_immutables
 
+import 'dart:developer';
 import 'dart:ui';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:slide_to_confirm/slide_to_confirm.dart';
+import 'package:tip_pay/helper/data_manage.dart';
 
 import 'package:tip_pay/screens/generate_qr.dart';
 import 'package:tip_pay/widgets/circleImage.dart';
@@ -29,7 +31,17 @@ class InputBiller_ extends State<InputBiller> {
     return Scaffold(
       bottomNavigationBar: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: SliderButton(width)),
+          child: SliderButton(width, () async {
+            final billerInfo = await DatabaseManager()
+                .findUserStudentID(int.parse(billerid.text));
+
+            log(billerInfo.toString());
+
+            String response = await DatabaseManager().payment(
+                double.parse(price.text), billerInfo['UID'], 'payment');
+
+            log(response);
+          })),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(

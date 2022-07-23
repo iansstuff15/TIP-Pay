@@ -17,35 +17,80 @@ class DatabaseManager {
   Future getAccount(uid) async {
     try {
       final account = await collection_account.doc(uid).get();
+
       return (account.data());
     } catch (e) {
       return e;
     }
   }
 
-  Future payment(double payment) async {
-    double balance =  double.parse(stateController.user.balance.toString());
-    String uid = (stateController.user.uid).toString();
-    print(balance);
-    if(payment<balance){
-      try{
+  Future findUserStudentID(int studentID) async {
+    try {
+      final account = await collection_account
+          .where('Student_id', isEqualTo: studentID)
+          .get();
+
+      return (account.docs[0].data());
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  Future setTransaction(Map<String, dynamic> json, String uid) async {
+    try {
+      final account = collection_account
+          .doc(uid)
+          .collection('Transactions')
+          .doc()
+          .set(json);
+      return 'Transaction added';
+    } catch (e) {
+      return e.toString();
+    }
+  }
+
+  Future payment(double payment, String billerUID, String type) async {
+    double balance = double.parse(stateController.user.balance.toString());
+    String uid = stateController.user.uid.toString();
+    log(balance.toString());
+    if (payment < balance) {
+      try {
         final docacc = collection_account.doc(uid);
-        final json = {
-          'balance': balance - payment
+        final json = {'balance': FieldValue.increment(-payment)};
+        docacc.update(json);
+
+        final transationJSON = {
+          'Biller_id': billerUID,
+          'Sender_id': stateController.user.uid.toString(),
+          'Price': payment,
+          'Transaction_date': FieldValue.serverTimestamp(),
+          'Type': type,
         };
-        docacc.set(json, SetOptions(merge: true));
-        return ("Payment Success");
-      }catch (e){
-        print(e);
+
+        setTransaction(transationJSON, uid);
+        try {
+          final biller = collection_account.doc(billerUID);
+          final json = {'balance': FieldValue.increment(payment)};
+          biller.update(json);
+          setTransaction(transationJSON, billerUID);
+          return ("Payment Success");
+        } catch (e) {
+          log(e.toString());
+          return (e.toString());
+        }
+      } catch (e) {
+        log(e.toString());
+        return (e.toString());
       }
-      
-    }else{
+    } else {
       return "Insufficient funds";
     }
   }
-    Future getTransacs(uid) async {
+
+  Future getTransacs(uid) async {
     try {
-      QuerySnapshot accounttrans = await collection_account.doc(uid).collection("Transactions").get();
+      QuerySnapshot accounttrans =
+          await collection_account.doc(uid).collection("Transactions").get();
       final translist = accounttrans.docs.map((doc) => doc.data()).toList();
       return (translist);
     } catch (e) {

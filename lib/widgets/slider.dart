@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 import 'package:slide_to_confirm/slide_to_confirm.dart';
 
 class SliderButton extends StatelessWidget {
   double? width;
-
-  SliderButton(this.width);
+  Callback? onSlide;
+  SliderButton(this.width, this.onSlide);
   @override
   Widget build(BuildContext context) {
     return (SizedBox(
@@ -24,7 +25,7 @@ class SliderButton extends StatelessWidget {
           foregroundColor: Colors.black,
           foregroundShape: BorderRadius.circular(12),
           backgroundShape: BorderRadius.circular(12),
-          onConfirmation: () => {},
+          onConfirmation: onSlide!,
         )));
   }
 }
