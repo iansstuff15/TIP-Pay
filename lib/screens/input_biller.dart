@@ -41,9 +41,12 @@ class InputBiller_ extends State<InputBiller> {
             await DatabaseManager().payment(
                 double.parse(price.text), billerInfo['UID'], 'payment');
             Get.snackbar('Success', 'Payment Sent',
-                colorText: Colors.white, backgroundColor: Colors.green);
+                snackPosition: SnackPosition.BOTTOM,
+                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                colorText: Colors.white,
+                backgroundColor: Colors.green);
             // log(response.toString());
-            Get.to(ThankYou());
+            Get.to(ThankYou(), arguments: ['Receive', 'Input Payment']);
           })),
       body: SafeArea(
         child: SingleChildScrollView(

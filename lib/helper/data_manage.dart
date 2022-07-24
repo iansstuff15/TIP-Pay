@@ -57,6 +57,8 @@ class DatabaseManager {
       try {
         final docacc = collection_account.doc(uid);
         final json = {'balance': FieldValue.increment(-payment)};
+        final totalSpending = {'Total_spending': FieldValue.increment(payment)};
+        final totalDeposits = {'Total_deposits': FieldValue.increment(payment)};
         docacc.update(json);
 
         final transationJSON = {
@@ -73,6 +75,8 @@ class DatabaseManager {
           final json = {'balance': FieldValue.increment(payment)};
           biller.update(json);
           setTransaction(transationJSON, billerUID);
+          docacc.update(totalSpending);
+          biller.update(totalDeposits);
           return (transationJSON);
         } catch (e) {
           log(e.toString());

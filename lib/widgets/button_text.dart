@@ -7,18 +7,14 @@ import 'package:flutter/material.dart';
 class ButtonText extends StatelessWidget {
   String? label;
   VoidCallback? onPressed;
-  ButtonText(
-    this.label,
-    this.onPressed
-  );
+  ButtonText(this.label, this.onPressed);
 
   @override
   Widget build(BuildContext context) {
     return Container(
         child: ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: Colors.black,
-      ),
+          primary: Colors.black, padding: EdgeInsets.symmetric(vertical: 20)),
       onPressed: onPressed,
       child: Text(label!),
     ));
