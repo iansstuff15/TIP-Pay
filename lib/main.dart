@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         Receive.id: (context) => Receive(),
         Settings.id: (context) => Settings(),
         InputBiller.id: (context) => InputBiller(),
-        LinkGmail.id: (context) => const LinkGmail(),
+        LinkGmail.id: (context) => LinkGmail(),
         TopupScreen.id: (context) => TopupScreen(),
         ThankYou.id: (context) => ThankYou(),
       },

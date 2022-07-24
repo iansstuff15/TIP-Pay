@@ -5,8 +5,9 @@ import 'package:tip_pay/screens/home.dart';
 import 'package:tip_pay/screens/feedback.dart';
 import 'package:tip_pay/screens/settings.dart';
 import 'package:tip_pay/screens/transactions.dart';
-
-
+import 'package:tip_pay/widgets/button_text_outline.dart';
+import '../widgets/button_text.dart';
+import 'package:get/get.dart';
 
 class BottomNav extends StatefulWidget {
   static String id = 'ButtomNav';
@@ -26,32 +27,61 @@ class BottomNav_ extends State<BottomNav> {
 
   @override
   Widget build(BuildContext context) {
+    double widthoutline = 60;
     final List<Widget> children = pageScreens();
     return Scaffold(
-      body: children[currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        fixedColor: Colors.black,
-        iconSize: 40,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        currentIndex: currentIndex,
-        onTap: (index) => setState(() {
-          currentIndex = index;
-        }),
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home_rounded), label: "Home"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.receipt), label: "Transactions"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.support_agent_rounded), label: "Support"),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: "Settings",
-          ),
-        ],
+      body: Home(),
+      bottomNavigationBar: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        child: Container(
+            height: 100,
+            width: 50,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: widthoutline,
+                  child: Column(
+                    children: [
+                      Icon(Icons.home_rounded),
+                      ButtonTextOutline(
+                          'Home', () => {Get.to(BottomNav())}),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: widthoutline,
+                  child: Column(
+                    children: [
+                      Icon(Icons.receipt),
+                      ButtonText(
+                          'Transac', () => {Get.to(Transactions())}),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: widthoutline,
+                  child: Column(
+                    children: [
+                      Icon(Icons.support_agent_rounded),
+                      ButtonText(
+                          'Report', () => {Get.to(LinkGmail())}),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: widthoutline,
+                  child: Column(
+                    children: [
+                      Icon(Icons.settings),
+                      ButtonText(
+                          'Settings', () => {Get.to((Settings()))}),
+                    ],
+                  ),
+                ),
+              ],
+            )),
       ),
-    );
+      );
   }
 }
