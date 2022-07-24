@@ -4,8 +4,17 @@ import 'package:tip_pay/dataModels/user.dart';
 class StateController extends GetxController {
   var user = UserData();
 
-  void setUserData(uid, firstName, lastName, email, studentNumber,
-      totalDeposits, totalSpending, balance,transactions) {
+  void setUserData(
+    String uid,
+    String firstName,
+    String lastName,
+    String email,
+    int studentNumber,
+    double totalDeposits,
+    double totalSpending,
+    double balance,
+    // Map<String, dynamic> transactions
+  ) {
     user.firstName.value = firstName;
     user.lastName.value = lastName;
     user.email.value = email;
@@ -14,6 +23,6 @@ class StateController extends GetxController {
     user.totalDeposits.value = totalDeposits;
     user.totalSpending.value = totalSpending;
     user.balance.value = balance;
-    user.transactions = transactions;
+    // user.transactions = transactions;
   }
 }

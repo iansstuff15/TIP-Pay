@@ -12,9 +12,9 @@ class UserData {
   var lastName = ''.obs;
   var email = ''.obs;
   var studentNumber = 0.obs;
-  var totalDeposits = 0.obs;
-  var totalSpending = 0.obs;
+  var totalDeposits = 0.00.obs;
+  var totalSpending = 0.00.obs;
   var uid = ''.obs;
-  var balance = 0.obs;
-  var transactions = [].obs;
+  var balance = 0.0.obs;
+  // var transactions = Map<String, dynamic>.obs;
 }

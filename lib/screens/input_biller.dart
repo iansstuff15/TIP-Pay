@@ -8,6 +8,7 @@ import 'package:slide_to_confirm/slide_to_confirm.dart';
 import 'package:tip_pay/helper/data_manage.dart';
 
 import 'package:tip_pay/screens/generate_qr.dart';
+import 'package:tip_pay/screens/thankyou.dart';
 import 'package:tip_pay/widgets/circleImage.dart';
 import 'package:tip_pay/widgets/input.dart';
 import 'package:tip_pay/widgets/button_text.dart';
@@ -37,10 +38,12 @@ class InputBiller_ extends State<InputBiller> {
 
             log(billerInfo.toString());
 
-            String response = await DatabaseManager().payment(
+            await DatabaseManager().payment(
                 double.parse(price.text), billerInfo['UID'], 'payment');
-
-            log(response);
+            Get.snackbar('Success', 'Payment Sent',
+                colorText: Colors.white, backgroundColor: Colors.green);
+            // log(response.toString());
+            Get.to(ThankYou());
           })),
       body: SafeArea(
         child: SingleChildScrollView(

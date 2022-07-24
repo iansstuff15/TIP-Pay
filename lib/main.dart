@@ -11,10 +11,12 @@ import 'package:tip_pay/screens/receive_main.dart';
 import 'package:tip_pay/screens/settings.dart';
 import 'package:tip_pay/screens/feedback.dart';
 import 'package:tip_pay/screens/bottom_nav.dart';
+import 'package:tip_pay/screens/thankyou.dart';
 import 'package:tip_pay/screens/topup_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:tip_pay/helper/data_manage.dart';
+
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -39,6 +41,7 @@ class MyApp extends StatelessWidget {
         InputBiller.id: (context) => InputBiller(),
         LinkGmail.id: (context) => const LinkGmail(),
         TopupScreen.id: (context) => TopupScreen(),
+        ThankYou.id: (context) => ThankYou(),
       },
     );
   }

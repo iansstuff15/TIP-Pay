@@ -73,7 +73,7 @@ class DatabaseManager {
           final json = {'balance': FieldValue.increment(payment)};
           biller.update(json);
           setTransaction(transationJSON, billerUID);
-          return ("Payment Success");
+          return (transationJSON);
         } catch (e) {
           log(e.toString());
           return (e.toString());
@@ -113,15 +113,16 @@ class DatabaseManager {
         final firstName = account['First_name'];
         if (GetUtils.isEqual(studentNumber!, account['Student_id'])) {
           stateController.setUserData(
-              uid,
-              account['First_name'],
-              account['Last_name'],
-              account['Email'],
-              account['Student_id'],
-              account['Total_deposits'],
-              account['Total_spending'],
-              account['balance'],
-              account['transactions']);
+            uid,
+            account['First_name'],
+            account['Last_name'],
+            account['Email'],
+            account['Student_id'],
+            double.parse(account['Total_deposits'].toString()),
+            double.parse(account['Total_spending'].toString()),
+            double.parse(account['balance'].toString()),
+            // account['transactions']
+          );
           return ('Welcome back, ${firstName}!');
         } else {
           return ('Student number is not found does not match account\'s student number');

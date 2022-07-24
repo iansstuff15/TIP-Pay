@@ -17,7 +17,7 @@ class TotalSpendAndDeposit extends StatelessWidget {
           children: [
             Obx(
               () => Text(
-                "₱${stateController.user.totalSpending}",
+                "₱${stateController.user.totalSpending.toString()}",
                 style: TextStyle(
                   fontSize: 18,
                 ),
@@ -46,7 +46,7 @@ class TotalSpendAndDeposit extends StatelessWidget {
           children: [
             Obx(
               () => Text(
-                "₱${stateController.user.totalDeposits}",
+                "₱${stateController.user.totalDeposits.toString()}",
                 style: TextStyle(
                   fontSize: 18,
                 ),

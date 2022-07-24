@@ -30,7 +30,7 @@ class CardContainer extends StatelessWidget {
             style: TextStyle(fontSize: 13),
           ),
           Obx(
-            () => Text("₱ ${stateController.user.balance}",
+            () => Text("₱ ${stateController.user.balance.toString()}",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600)),
           ),
           SizedBox(
