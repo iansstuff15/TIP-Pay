@@ -16,5 +16,5 @@ class UserData {
   var totalSpending = 0.00.obs;
   var uid = ''.obs;
   var balance = 0.0.obs;
-  // var transactions = Map<String, dynamic>.obs;
+  var transactions = {}.obs;
 }

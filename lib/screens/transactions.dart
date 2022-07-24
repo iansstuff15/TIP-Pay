@@ -2,12 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:tip_pay/widgets/transaction_list_item_full.dart';
-
+import 'package:get/get.dart';
+import 'package:tip_pay/stateManagement/controller.dart';
 import '../widgets/transaction_list_item.dart';
 
 class Transactions extends StatelessWidget {
   static String id = 'Transactions';
-
+  StateController stateController = Get.find<StateController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,11 +29,11 @@ class Transactions extends StatelessWidget {
           SingleChildScrollView(
               child: ListView.separated(
                   shrinkWrap: true,
-                  itemBuilder: (context, index) => TransactionListItemFull(),
+                  itemBuilder: (context, index) => TransactionListItemFull(index: index),
                   separatorBuilder: (context, index) => SizedBox(
                         height: 10,
                       ),
-                  itemCount: 15)),
+                  itemCount: stateController.user.transactions.value.length)),
         ],
       ),
     ))));

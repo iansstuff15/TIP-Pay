@@ -13,7 +13,7 @@ class StateController extends GetxController {
     double totalDeposits,
     double totalSpending,
     double balance,
-    // Map<String, dynamic> transactions
+      Map transactions
   ) {
     user.firstName.value = firstName;
     user.lastName.value = lastName;
@@ -23,6 +23,6 @@ class StateController extends GetxController {
     user.totalDeposits.value = totalDeposits;
     user.totalSpending.value = totalSpending;
     user.balance.value = balance;
-    // user.transactions = transactions;
+    user.transactions.value = transactions;
   }
 }
