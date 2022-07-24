@@ -18,7 +18,7 @@ class RecentTransactions extends StatelessWidget {
       SingleChildScrollView(
         child: ListView.separated(
             shrinkWrap: true,
-            itemBuilder: (context, index) => TransactionListItem(),
+            itemBuilder: (context, index) => TransactionListItem(index: index,),
             // ignore: prefer_const_constructors
             separatorBuilder: (context, index) => SizedBox(
                   width: 10,

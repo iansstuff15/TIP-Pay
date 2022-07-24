@@ -93,10 +93,9 @@ class DatabaseManager {
 
   Future getTransacs(uid) async {
     try {
-      QuerySnapshot accounttrans =
-          await collection_account.doc(uid).collection("Transactions").get();
+      final accounttrans = await collection_account.doc(uid).collection("Transactions").get();
       final translist = accounttrans.docs.map((doc) => doc.data()).toList();
-      return (translist);
+      return (translist.asMap());
     } catch (e) {
       return e;
     }
@@ -113,7 +112,7 @@ class DatabaseManager {
             .signInWithEmailAndPassword(email: email, password: password!);
         final uid = await credential.user!.uid;
         final account = await getAccount(uid);
-
+        final accountTrans = await getTransacs(uid);
         final firstName = account['First_name'];
         if (GetUtils.isEqual(studentNumber!, account['Student_id'])) {
           stateController.setUserData(
@@ -125,7 +124,7 @@ class DatabaseManager {
             double.parse(account['Total_deposits'].toString()),
             double.parse(account['Total_spending'].toString()),
             double.parse(account['balance'].toString()),
-            // account['transactions']
+            accountTrans
           );
           return ('Welcome back, ${firstName}!');
         } else {
