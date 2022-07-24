@@ -15,7 +15,9 @@ class ButtonTextOutline extends StatelessWidget {
       onPressed: onPressed,
       style: OutlinedButton.styleFrom(
           side: BorderSide(color: Colors.black, width: 3),
-          padding: EdgeInsets.symmetric(vertical: 20)),
+          padding: EdgeInsets.symmetric(
+            vertical: 20,
+          )),
       child: Text(
         label!,
         style: TextStyle(color: Colors.black, fontWeight: FontWeight.w900),
