@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:tip_pay/widgets/transaction_list_item_full.dart';
 import 'package:get/get.dart';
 import 'package:tip_pay/stateManagement/controller.dart';
+import '../widgets/button_text.dart';
 import '../widgets/transaction_list_item.dart';
 
 class Transactions extends StatelessWidget {
   static String id = 'Transactions';
+  List<List<String>> transList = [<String>["Payment Type", "  Price", " Transaction Date"]];
   StateController stateController = Get.find<StateController>();
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class Transactions extends StatelessWidget {
                 child: Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const Text(
             'Transactions',
@@ -29,11 +31,21 @@ class Transactions extends StatelessWidget {
           SingleChildScrollView(
               child: ListView.separated(
                   shrinkWrap: true,
-                  itemBuilder: (context, index) => TransactionListItemFull(index: index),
+                  itemBuilder: (context, index) {
+                    transList.add(<String>["   ${stateController.user.transactions[index]["Type"]}",
+                      "    ${stateController.user.transactions[index]['Price'].toString()}",
+                      "  ${stateController.user.transactions[index]["Transaction_date"].toDate().toString()}"
+                ]);
+                    return TransactionListItemFull(index: index);},
                   separatorBuilder: (context, index) => SizedBox(
                         height: 10,
                       ),
-                  itemCount: stateController.user.transactions.value.length)),
+                  itemCount: stateController.user.transactions.value.length,),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          ButtonText('Export', ()=>{generateCsv(transList) })
         ],
       ),
     ))));
