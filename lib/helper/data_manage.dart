@@ -16,9 +16,9 @@ class DatabaseManager {
 
   Future getAccount(uid) async {
     try {
-      return await collection_account.doc(uid).get().then((DocumentSnapshot documentSnapshot){
-        return documentSnapshot;
-      });
+      final account = await collection_account.doc(uid).get();
+
+      return (account.data());
     } catch (e) {
       return e;
     }
@@ -91,12 +91,14 @@ class DatabaseManager {
     }
   }
 
+  Stream<QuerySnapshot> retrieve() {
+    return collection_account.doc(stateController.user.uid.toString()).collection("Transactions").snapshots();
+  }
   Future getTransacs(uid) async {
     try {
-
-      return await collection_account.doc(uid).collection('Transactions').snapshots();
-      
-      // return (translist.asMap());
+      final accounttrans = await collection_account.doc(uid).collection("Transactions").get();
+      final translist = accounttrans.docs.map((doc) => doc.data()).toList();
+      return (translist.asMap());
     } catch (e) {
       return e;
     }
@@ -127,6 +129,7 @@ class DatabaseManager {
             double.parse(account['balance'].toString()),
             accountTrans
           );
+          await retrieve();
           return ('Welcome back, ${firstName}!');
         } else {
           return ('Student number is not found does not match account\'s student number');

@@ -10,9 +10,9 @@ import 'dart:io';
 class TransactionListItemFull extends StatelessWidget {
   StateController stateController = Get.find<StateController>();
 
-  final int index;
+  final Map data;
   TransactionListItemFull({Key? key,
-    required this.index}) : super(key: key);
+    required this.data}) : super(key: key);
   @override
   Widget build(BuildContext context) {
 
@@ -26,17 +26,18 @@ class TransactionListItemFull extends StatelessWidget {
               'Name',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-             Text(stateController.user.transactions.value[index]["Transaction_date"].toDate().toString())
+             Text(data["Transaction_date"].toDate().toString())
           ],
         ),
-       Text(stateController.user.transactions.value[index]["Type"],
+        Text(data["Type"],
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
-        Text(stateController.user.transactions.value[index]["Price"].toString(),
+        Text(data["Price"].toString(),
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20))
       ],
     ));
   }
 }
+
 generateCsv(List<List<String>> itemList) async{
   print("test OK");
   String csvData = ListToCsvConverter().convert(itemList);

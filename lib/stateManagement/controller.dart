@@ -25,4 +25,9 @@ class StateController extends GetxController {
     user.balance.value = balance;
     user.transactions.value = transactions;
   }
+
+  void setTransactlist (Map transactions){
+    user.transactions.value = transactions;
+
+  }
 }
