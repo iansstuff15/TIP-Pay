@@ -94,6 +94,9 @@ class DatabaseManager {
   Stream<QuerySnapshot> retrieve() {
     return collection_account.doc(stateController.user.uid.toString()).collection("Transactions").snapshots();
   }
+  Stream<DocumentSnapshot> retrievebal() {
+    return collection_account.doc(stateController.user.uid.toString()).snapshots();
+  }
   Future getTransacs(uid) async {
     try {
       final accounttrans = await collection_account.doc(uid).collection("Transactions").get();

@@ -1,11 +1,14 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tip_pay/stateManagement/controller.dart';
+import 'package:tip_pay/helper/data_manage.dart';
 
 class CardContainer extends StatelessWidget {
   StateController stateController = Get.find<StateController>();
+  final Stream<DocumentSnapshot> balFirebase = DatabaseManager().retrievebal();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,9 +22,9 @@ class CardContainer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Obx(() => Text(
-                stateController.user.studentNumber.toString(),
-                style: TextStyle(fontWeight: FontWeight.w600),
-              )),
+            stateController.user.studentNumber.toString(),
+            style: TextStyle(fontWeight: FontWeight.w600),
+          )),
           SizedBox(
             height: 50,
           ),
@@ -29,10 +32,23 @@ class CardContainer extends StatelessWidget {
             "Current Balance",
             style: TextStyle(fontSize: 13),
           ),
-          Obx(
-            () => Text("₱ ${stateController.user.balance.toString()}",
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600)),
+          StreamBuilder <DocumentSnapshot>(
+            stream: balFirebase,
+              builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot){
+                if(snapshot.hasError){
+                  return Text('Something wrong');
+                }
+
+                if(snapshot.connectionState == ConnectionState.waiting){
+                  return Text("Loading");
+
+                }
+                return Text("₱${snapshot.data!['balance']}",
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600)
+                );
+              }
           ),
+
           SizedBox(
             height: 25,
           ),
