@@ -34,54 +34,52 @@ class BottomNav_ extends State<BottomNav> {
       bottomNavigationBar: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Container(
-            height: 100,
+            height: 90,
             width: 50,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(
-                  width: widthoutline,
-                  child: Column(
-                    children: [
-                      Icon(Icons.home_rounded),
-                      ButtonTextOutline(
-                          'Home', () => {Get.to(BottomNav())}),
-                    ],
+            child: Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    iconSize: 40,
+                    icon: const Icon(Icons.home),
+                    onPressed: () {
+                      setState(() {
+                        Get.to(BottomNav());
+                      });
+                    },
                   ),
-                ),
-                SizedBox(
-                  width: widthoutline,
-                  child: Column(
-                    children: [
-                      Icon(Icons.receipt),
-                      ButtonText(
-                          'Transac', () => {Get.to(Transactions())}),
-                    ],
+                  IconButton(
+                    iconSize: 40,
+                    icon: const Icon(Icons.receipt),
+                    onPressed: () {
+                      setState(() {
+                        Get.to(Transactions());
+                      });
+                    },
                   ),
-                ),
-                SizedBox(
-                  width: widthoutline,
-                  child: Column(
-                    children: [
-                      Icon(Icons.support_agent_rounded),
-                      ButtonText(
-                          'Report', () => {Get.to(LinkGmail())}),
-                    ],
+                  IconButton(
+                    iconSize: 40,
+                    icon: const Icon(Icons.support_agent),
+                    onPressed: () {
+                      setState(() {
+                        Get.to(LinkGmail());
+                      });
+                    },
                   ),
-                ),
-                SizedBox(
-                  width: widthoutline,
-                  child: Column(
-                    children: [
-                      Icon(Icons.settings),
-                      ButtonText(
-                          'Settings', () => {Get.to((Settings()))}),
-                    ],
+                  IconButton(
+                    iconSize: 40,
+                    icon: const Icon(Icons.settings),
+                    onPressed: () {
+                      setState(() {
+                        Get.to(Settings());
+                      });
+                    },
                   ),
-                ),
-              ],
+                ],
+              ),
             )),
       ),
-      );
+    );
   }
 }
