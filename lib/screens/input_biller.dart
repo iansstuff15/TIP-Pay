@@ -39,7 +39,7 @@ class InputBiller_ extends State<InputBiller> {
             log(billerInfo.toString());
 
             await DatabaseManager().payment(
-                double.parse(price.text), billerInfo['UID'], 'payment');
+                double.parse(price.text), billerInfo['UID'], 'Payment');
             Get.snackbar('Success', 'Payment Sent',
                 snackPosition: SnackPosition.BOTTOM,
                 margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),

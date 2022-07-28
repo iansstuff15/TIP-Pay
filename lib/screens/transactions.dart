@@ -86,9 +86,9 @@ class Transactions extends StatelessWidget {
   }
   addList(data){
     transList.add(<String>[
-      data['Type'],
-      data['Price'].toString(),
-      data['Transaction_date'].toDate().toString()
+      "${data['Type']}",
+      "       ${data['Price'].toString()}",
+      "     ${data['Transaction_date'].toDate().toString()}"
       ]);    
   }
 }

@@ -22,15 +22,13 @@ class TransactionListItemFull extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Name',
+            Text(
+              data['Type'],
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
              Text(data["Transaction_date"].toDate().toString())
           ],
         ),
-        Text(data["Type"],
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
         Text(data["Price"].toString(),
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20))
       ],

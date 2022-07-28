@@ -18,7 +18,7 @@ class TransactionListItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
              Text(
-              'Name',
+              data["Type"],
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
              Text(data["Transaction_date"].toDate().toString())
