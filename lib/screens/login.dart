@@ -16,7 +16,6 @@ class Login extends StatelessWidget {
   static String id = 'Login';
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SafeArea(
           child: Container(
@@ -73,7 +72,7 @@ class Login extends StatelessWidget {
                             margin: EdgeInsets.symmetric(
                                 vertical: 10, horizontal: 20));
                         if (response.contains('Welcome back')) {
-                          Get.to(BottomNav());
+                          Get.off(BottomNav());
                         }
                       }),
                       SizedBox(
