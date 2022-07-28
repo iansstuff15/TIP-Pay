@@ -7,6 +7,7 @@ import 'package:tip_pay/screens/input_biller.dart';
 import 'package:tip_pay/screens/scanner_qr.dart';
 import 'package:tip_pay/widgets/circleImage.dart';
 import 'package:tip_pay/widgets/savedBiller.dart';
+import 'package:tip_pay/widgets/totalSpendAndDeposit.dart';
 
 import '../widgets/recentTransactions.dart';
 
@@ -43,63 +44,7 @@ class PayMain_ extends State<PayMain> {
             style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 10),
-          Row(
-            // spacing: 100,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    "₱12,394.0",
-                    style: TextStyle(
-                      fontSize: 23,
-                    ),
-                  ),
-                  Text(
-                    "Total Spending",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    "Month of May",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ],
-              ),
-              // const SizedBox(width: 100),
-              const Spacer(),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    "₱122,394.0",
-                    style: TextStyle(
-                      fontSize: 23,
-                    ),
-                  ),
-                  Text(
-                    "Total Deposits",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    "Month of May",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
+          TotalSpendAndDeposit(),
           const SizedBox(height: 10),
 
           //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
