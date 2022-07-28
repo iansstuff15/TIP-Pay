@@ -49,6 +49,40 @@ class DatabaseManager {
     }
   }
 
+  Future topup(double payment) async{
+    double balance = double.parse(stateController.user.balance.toString());
+    String uid = stateController.user.uid.toString();
+    try {
+      final docacc = collection_account.doc(uid);
+      final totalSpending = {'Total_spending': FieldValue.increment(0.0)};
+      final totalDeposits = {'Total_deposits': FieldValue.increment(payment)};
+
+      final transactionJSON = {
+        'Biller_id': uid,
+        'Sender_id': stateController.user.uid.toString(),
+        'Price': payment,
+        'Transaction_date': FieldValue.serverTimestamp(),
+        'Type': "Top-Up",
+      };
+
+      setTransaction(transactionJSON, uid);
+      try {
+        final json = {'balance': FieldValue.increment(payment)};
+        docacc.update(json);
+        setTransaction(transactionJSON, uid);
+        docacc.update(totalSpending);
+        docacc.update(totalDeposits);
+        return (transactionJSON);
+      } catch (e) {
+        log(e.toString());
+        return (e.toString());
+      }
+    } catch (e) {
+      log(e.toString());
+      return (e.toString());
+    }
+  }
+
   Future payment(double payment, String billerUID, String type) async {
     double balance = double.parse(stateController.user.balance.toString());
     String uid = stateController.user.uid.toString();

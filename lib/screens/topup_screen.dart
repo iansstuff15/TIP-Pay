@@ -4,8 +4,9 @@ import 'dart:ui';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:slide_to_confirm/slide_to_confirm.dart';
-
+import 'package:tip_pay/helper/data_manage.dart';
 import 'package:tip_pay/screens/generate_qr.dart';
+import 'package:tip_pay/screens/thankyou.dart';
 import 'package:tip_pay/widgets/circleImage.dart';
 import 'package:tip_pay/widgets/input.dart';
 import 'package:tip_pay/widgets/button_text.dart';
@@ -30,7 +31,19 @@ class TopupScreen_ extends State<TopupScreen> {
     return Scaffold(
       bottomNavigationBar: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: SliderButton(width, () => {})),
+          child: SliderButton(width, () async {
+
+          await DatabaseManager().topup(
+          double.parse(amount.text));
+          Get.snackbar('Success', 'Payment Sent',
+          snackPosition: SnackPosition.BOTTOM,
+          margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          colorText: Colors.white,
+          backgroundColor: Colors.green);
+          // log(response.toString());
+          Get.to(ThankYou(), arguments: ['Receive', 'Input Payment']);
+
+          })),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(

@@ -46,4 +46,9 @@ generateCsv(List<List<String>> itemList) async{
   final File file = await (File('${dir?.path}/transac.txt').create());
   await file.writeAsString(csvData);
   print("Stored in $dir");
+  Get.snackbar('Success', 'Exported to $dir',
+      snackPosition: SnackPosition.BOTTOM,
+      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      colorText: Colors.white,
+      backgroundColor: Colors.green);
 }
