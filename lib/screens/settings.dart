@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tip_pay/widgets/button_text.dart';
 import 'package:tip_pay/widgets/circleImage.dart';
+import 'package:tip_pay/screens/locations.dart';
 
 class Settings extends StatefulWidget {
   @override
@@ -68,9 +69,25 @@ class Settings_ extends State<Settings> {
                         activeTrackColor: Colors.yellowAccent[100],
                         activeColor: Colors.yellow,
                       ),
-                    )
+                    ),
+                    
                   ],
                 ),
+                SizedBox(
+                      height: 40,
+                    ),
+                ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size.fromHeight(50),
+                          primary: Colors.black,
+                          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20)),
+                      onPressed: () {
+                      setState(() {
+                        Get.to(Location());
+                      });
+                    },
+                      child: Text("Locations"),
+                    )
               ],
             ),
           ),
