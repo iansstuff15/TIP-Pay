@@ -27,7 +27,7 @@ class ThankYou extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ButtonTextOutline(
-                      'Go Back to Dashboard', () => {Get.to(BottomNav())}),
+                      'Go Back to Dashboard', () => {Get.offAll(BottomNav())}),
                 ),
                 SizedBox(
                   width: double.infinity,
