@@ -49,10 +49,10 @@ class ThankYou extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  argumentData[0]!.toString(),
+                  'Receive',
                   style: TextStyle(fontWeight: FontWeight.w900, fontSize: 50),
                 ),
-                Text(argumentData[1]!.toString(),
+                Text('Payment',
                     style: const TextStyle(
                         fontWeight: FontWeight.w900, fontSize: 25)),
                 const Center(

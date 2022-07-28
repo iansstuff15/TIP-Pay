@@ -16,9 +16,9 @@ class DatabaseManager {
 
   Future getAccount(uid) async {
     try {
-      final account = await collection_account.doc(uid).get();
-
-      return (account.data());
+      return await collection_account.doc(uid).get().then((DocumentSnapshot documentSnapshot){
+        return documentSnapshot;
+      });
     } catch (e) {
       return e;
     }
@@ -93,12 +93,8 @@ class DatabaseManager {
 
   Future getTransacs(uid) async {
     try {
-      return await collection_account.doc(uid).collection("Transactions").get().then((QuerySnapshot querySnapshot){
-        final translist = querySnapshot.docs.map((doc) {   
-          return doc.data();}).toList();
-          print(translist);
-        return(translist.asMap());
-      });
+
+      return await collection_account.doc(uid).collection('Transactions').snapshots();
       
       // return (translist.asMap());
     } catch (e) {
