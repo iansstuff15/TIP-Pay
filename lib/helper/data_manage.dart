@@ -93,9 +93,14 @@ class DatabaseManager {
 
   Future getTransacs(uid) async {
     try {
-      final accounttrans = await collection_account.doc(uid).collection("Transactions").get();
-      final translist = accounttrans.docs.map((doc) => doc.data()).toList();
-      return (translist.asMap());
+      return await collection_account.doc(uid).collection("Transactions").get().then((QuerySnapshot querySnapshot){
+        final translist = querySnapshot.docs.map((doc) {   
+          return doc.data();}).toList();
+          print(translist);
+        return(translist.asMap());
+      });
+      
+      // return (translist.asMap());
     } catch (e) {
       return e;
     }
