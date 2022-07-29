@@ -91,7 +91,7 @@ class PayMain_ extends State<PayMain> {
                       color: Colors.grey.shade900),
                   child: InkWell(
                     onTap: () {
-                      Get.to(InputBiller());
+                      Get.to(() => InputBiller(), arguments: ['', '', '']);
                     },
                     child: Row(
                       children: [

@@ -8,6 +8,7 @@ import 'package:tip_pay/widgets/button_text.dart';
 import 'package:tip_pay/widgets/circleImage.dart';
 import 'package:tip_pay/widgets/totalSpendAndDeposit.dart';
 
+import '../stateManagement/controller.dart';
 import '../widgets/billingInformation.dart';
 
 class GenerateQR extends StatefulWidget {
@@ -17,6 +18,7 @@ class GenerateQR extends StatefulWidget {
 }
 
 class GenerateQR_ extends State<GenerateQR> {
+  StateController stateController = Get.find<StateController>();
   final inputQR = TextEditingController();
   bool pressed = false;
 
@@ -60,7 +62,7 @@ class GenerateQR_ extends State<GenerateQR> {
                 ),
                 Center(
                   child: QrImage(
-                    data: "30k TIP",
+                    data: stateController.user.uid.toString(),
                     size: 300,
                   ),
                 ),

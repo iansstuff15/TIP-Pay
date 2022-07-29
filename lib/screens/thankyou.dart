@@ -1,8 +1,5 @@
-// ignore_for_file: unnecessary_const, prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tip_pay/screens/bottom_nav.dart';
 import 'package:tip_pay/screens/home.dart';
 import 'package:tip_pay/screens/transactions.dart';
 import 'package:tip_pay/widgets/button_text_outline.dart';
@@ -27,7 +24,7 @@ class ThankYou extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ButtonTextOutline(
-                      'Go Back to Dashboard', () => {Get.offAll(BottomNav())}),
+                      'Go Back to Dashboard', () => {Get.to(Home())}),
                 ),
                 SizedBox(
                   width: double.infinity,
@@ -39,7 +36,7 @@ class ThankYou extends StatelessWidget {
       ),
       body: SafeArea(
         child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -50,10 +47,10 @@ class ThankYou extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  'Receive',
+                  argumentData[0]!.toString(),
                   style: TextStyle(fontWeight: FontWeight.w900, fontSize: 50),
                 ),
-                Text('Payment',
+                Text(argumentData[1]!.toString(),
                     style: const TextStyle(
                         fontWeight: FontWeight.w900, fontSize: 25)),
                 const Center(

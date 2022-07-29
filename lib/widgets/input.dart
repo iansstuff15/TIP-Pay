@@ -8,11 +8,13 @@ class Input extends StatelessWidget {
   String? label;
   TextInputType? keyboard;
   bool? obsureText;
-  TextEditingController controller;
+
   int? maxlength = 1;
   bool textCapitalization;
+  String? initialValue;
+  TextEditingController controller;
   Input(this.label, this.keyboard, this.obsureText, this.controller,
-      [this.textCapitalization = false]);
+      [this.textCapitalization = false, this.initialValue]);
 
   @override
   Widget build(BuildContext context) {
