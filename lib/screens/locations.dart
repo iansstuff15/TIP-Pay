@@ -24,8 +24,8 @@ class Location extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      locs(context, 'canteen.jpg', 'Canteen'),
-                      locs(context, 'supplies.jpg', 'Supplies')
+                      locs(context, 'assets/canteen.jpg', 'Canteen'),
+                      locs(context, 'assets/supplies.jpg', 'Supplies')
                     ],
                   )))),
     );
