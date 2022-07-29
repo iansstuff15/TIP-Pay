@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tip_pay/screens/login.dart';
@@ -25,7 +26,10 @@ class Profile extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: SizedBox(
             width: double.infinity,
-            child: ButtonText('Logout', () => {Get.offAll(Login())})),
+            child: ButtonText('Logout', () async {
+              await FirebaseAuth.instance.signOut();
+              Get.offAll(Login());
+            })),
       ),
       body: SafeArea(
           child: Container(
