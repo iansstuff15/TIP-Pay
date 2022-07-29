@@ -65,7 +65,6 @@ class DatabaseManager {
         'Type': "Top-Up",
       };
 
-      setTransaction(transactionJSON, uid);
       try {
         final json = {'balance': FieldValue.increment(payment)};
         docacc.update(json);
