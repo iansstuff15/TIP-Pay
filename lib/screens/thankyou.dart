@@ -1,5 +1,8 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tip_pay/screens/bottom_nav.dart';
 import 'package:tip_pay/screens/home.dart';
 import 'package:tip_pay/screens/transactions.dart';
 import 'package:tip_pay/widgets/button_text_outline.dart';
@@ -24,7 +27,7 @@ class ThankYou extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ButtonTextOutline(
-                      'Go Back to Dashboard', () => {Get.to(Home())}),
+                      'Go Back to Dashboard', () => {Get.offAll(BottomNav())}),
                 ),
                 SizedBox(
                   width: double.infinity,
