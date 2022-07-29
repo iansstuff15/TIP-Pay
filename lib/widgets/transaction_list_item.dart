@@ -18,10 +18,10 @@ class TransactionListItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
              Text(
-              data["Type"],
+              data["Type"]!,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-             Text(data["Transaction_date"].toDate().toString())
+             Text(data["Transaction_date"]!.toDate().toString())
           ],
         ),
         Text(data["Price"].toString(),

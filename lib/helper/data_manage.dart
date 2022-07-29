@@ -38,7 +38,7 @@ class DatabaseManager {
 
   Future setTransaction(Map<String, dynamic> json, String uid) async {
     try {
-      final account = collection_account
+      final account = await collection_account
           .doc(uid)
           .collection('Transactions')
           .doc()

@@ -24,7 +24,7 @@ class Receive_ extends State<Receive> {
         body: SafeArea(
       child: Container(
         color: Colors.white,
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.end,

@@ -16,7 +16,6 @@ import 'package:tip_pay/widgets/slider.dart';
 
 class InputBiller extends StatefulWidget {
   static String id = 'InputBiller';
-  dynamic argumentData = Get.arguments;
   @override
   InputBiller_ createState() => InputBiller_();
 }
@@ -47,13 +46,7 @@ class InputBiller_ extends State<InputBiller> {
                 colorText: Colors.white,
                 backgroundColor: Colors.green);
             // log(response.toString());
-            Get.to(() => ThankYou(), arguments: ['Receive', 'Input Payment'])!
-                .then((value) {
-              log('incoming');
-              log(value[0].toString());
-              log(value[1].toString());
-              log('end');
-            });
+            Get.to(() => ThankYou(), arguments: ['Receive', 'Input Payment']);
           })),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -89,25 +82,11 @@ class InputBiller_ extends State<InputBiller> {
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 30),
-                        Input(
-                          "Account Number",
-                          TextInputType.number,
-                          false,
-                          billerid
-                            ..text = widget.argumentData[2] == null
-                                ? billerid.text
-                                : widget.argumentData[2].toString(),
-                        ),
+                        Input("Account Number", TextInputType.number, false,
+                            billerid),
                         const SizedBox(height: 20),
-                        Input(
-                            "Account Name",
-                            TextInputType.text,
-                            false,
-                            billername
-                              ..text = widget.argumentData[0] == '' &&
-                                      widget.argumentData[1] == ''
-                                  ? billername.text
-                                  : '${widget.argumentData[0]} ${widget.argumentData[1]}'),
+                        Input("Account Name", TextInputType.text, false,
+                            billername),
                         const SizedBox(height: 20),
                         Input("Amount", TextInputType.number, false, price),
                       ]),
