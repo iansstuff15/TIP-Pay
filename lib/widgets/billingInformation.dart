@@ -1,12 +1,15 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../stateManagement/controller.dart';
+
 class BillingInformation extends StatelessWidget {
-  const BillingInformation({Key? key}) : super(key: key);
+  StateController stateController = Get.find<StateController>();
 
   @override
   Widget build(BuildContext context) {
-    var stateController;
     return (Row(
       // spacing: 100,
       children: [
