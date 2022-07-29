@@ -16,7 +16,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -62,6 +61,7 @@ class _HomeState extends State<Home> {
                             Get.to(PayMain());
                           },
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               const Icon(
                                 Icons.attach_money,
@@ -92,6 +92,7 @@ class _HomeState extends State<Home> {
                           Get.to(Receive());
                         },
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const Icon(
                               Icons.waving_hand,
@@ -126,6 +127,7 @@ class _HomeState extends State<Home> {
                             Get.to(TopupScreen());
                           },
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               const Icon(
                                 Icons.account_balance_wallet,
