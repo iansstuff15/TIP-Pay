@@ -32,17 +32,14 @@ class TopupScreen_ extends State<TopupScreen> {
       bottomNavigationBar: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: SliderButton(width, () async {
-
-          await DatabaseManager().topup(
-          double.parse(amount.text));
-          Get.snackbar('Success', 'Payment Sent',
-          snackPosition: SnackPosition.BOTTOM,
-          margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-          colorText: Colors.white,
-          backgroundColor: Colors.green);
-          // log(response.toString());
-          Get.to(ThankYou(), arguments: ['Receive', 'Input Payment']);
-
+            await DatabaseManager().topup(double.parse(amount.text));
+            Get.snackbar('Success', 'Payment Sent',
+                snackPosition: SnackPosition.BOTTOM,
+                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                colorText: Colors.white,
+                backgroundColor: Colors.green);
+            // log(response.toString());
+            Get.to(() => ThankYou(), arguments: ['Receive', 'Input Payment']);
           })),
       body: SafeArea(
         child: SingleChildScrollView(
