@@ -64,16 +64,17 @@ class PayMain_ extends State<PayMain> {
                         Get.to(ScannerQR());
                       },
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Icon(
                             Icons.qr_code_scanner,
-                            size: 56,
+                            size: 52,
                             color: Colors.white,
                           ),
                           const Text(
                             "with QR",
                             style: TextStyle(
-                              fontSize: 22,
+                              fontSize: 20,
                               color: Colors.white,
                             ),
                           ),
@@ -94,19 +95,20 @@ class PayMain_ extends State<PayMain> {
                       Get.to(() => InputBiller(), arguments: ['', '', '']);
                     },
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Icon(
                           Icons.receipt_long_outlined,
-                          size: 56,
+                          size: 52,
                           color: Colors.white,
                         ),
                         const SizedBox(
-                          width: 10,
+                          width: 20,
                         ),
                         const Text(
                           "Input \nBiller",
                           style: TextStyle(
-                            fontSize: 22,
+                            fontSize: 18,
                             color: Colors.white,
                           ),
                         ),
