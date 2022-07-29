@@ -21,7 +21,11 @@ class TransactionListItem extends StatelessWidget {
               data["Type"]!,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-             Text(data["Transaction_date"]!.toDate().toString())
+             Text(
+              data["Transaction_date"]!=null?
+              data["Transaction_date"].toDate().toString():
+              'No Timestamp'
+              )
           ],
         ),
         Text(data["Price"].toString(),
