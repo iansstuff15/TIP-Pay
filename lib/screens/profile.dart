@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tip_pay/screens/login.dart';
 import 'package:tip_pay/widgets/button_text.dart';
 import 'package:tip_pay/widgets/circleImage.dart';
 import 'package:tip_pay/widgets/couponRedeem.dart';
@@ -23,7 +24,8 @@ class Profile extends StatelessWidget {
       bottomNavigationBar: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: SizedBox(
-            width: double.infinity, child: ButtonText('Logout', () => {})),
+            width: double.infinity,
+            child: ButtonText('Logout', () => {Get.offAll(Login())})),
       ),
       body: SafeArea(
           child: Container(
