@@ -125,7 +125,7 @@ class DatabaseManager {
   }
 
   Stream<QuerySnapshot> retrieve() {
-    return collection_account.doc(stateController.user.uid.toString()).collection("Transactions").snapshots();
+    return collection_account.doc(stateController.user.uid.toString()).collection("Transactions").orderBy('Transaction_date', descending: true).snapshots();
   }
   Stream<DocumentSnapshot> retrievebal() {
     return collection_account.doc(stateController.user.uid.toString()).snapshots();
