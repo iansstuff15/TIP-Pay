@@ -16,6 +16,7 @@ import 'package:tip_pay/widgets/slider.dart';
 
 class InputBiller extends StatefulWidget {
   static String id = 'InputBiller';
+  dynamic argumentData = Get.arguments;
   @override
   InputBiller_ createState() => InputBiller_();
 }
@@ -82,11 +83,25 @@ class InputBiller_ extends State<InputBiller> {
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 30),
-                        Input("Account Number", TextInputType.number, false,
-                            billerid),
+                        Input(
+                          "Account Number",
+                          TextInputType.number,
+                          false,
+                          billerid
+                            ..text = widget.argumentData[2] == null
+                                ? billerid.text
+                                : widget.argumentData[2].toString(),
+                        ),
                         const SizedBox(height: 20),
-                        Input("Account Name", TextInputType.text, false,
-                            billername),
+                        Input(
+                            "Account Name",
+                            TextInputType.text,
+                            false,
+                            billername
+                              ..text = widget.argumentData[0] == '' &&
+                                      widget.argumentData[1] == ''
+                                  ? billername.text
+                                  : '${widget.argumentData[0]} ${widget.argumentData[1]}'),
                         const SizedBox(height: 20),
                         Input("Amount", TextInputType.number, false, price),
                       ]),
