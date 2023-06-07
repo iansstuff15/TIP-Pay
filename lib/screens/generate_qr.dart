@@ -7,7 +7,6 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:tip_pay/widgets/button_text.dart';
 import 'package:tip_pay/widgets/circleImage.dart';
 import 'package:tip_pay/widgets/totalSpendAndDeposit.dart';
-
 import '../stateManagement/controller.dart';
 import '../widgets/billingInformation.dart';
 
@@ -61,7 +60,7 @@ class GenerateQR_ extends State<GenerateQR> {
                   height: 20,
                 ),
                 Center(
-                  child: QrImage(
+                  child: QrImageView(
                     data: stateController.user.uid.toString(),
                     size: 300,
                   ),
@@ -76,7 +75,7 @@ class GenerateQR_ extends State<GenerateQR> {
 
   Center qrImage(String text) {
     return Center(
-      child: QrImage(
+      child: QrImageView(
         data: inputQR.text,
         size: 300,
       ),
